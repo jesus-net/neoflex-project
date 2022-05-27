@@ -1,0 +1,51 @@
+@font-face {
+    font-family: 'Inter-Regular';
+    src: url(@assets/fonts/Inter-Regular.eot);
+    src: url(@assets/fonts/Inter-Regular.eot?#iefix) format('embedded-opentype'),
+        url(@assets/fonts/Inter-Regular.otf) format('otf'),
+        url(@assets/fonts/Inter-Regular.svg#Inter-Regular) format('svg'),
+        url(@assets/fonts/Inter-Regular.ttf) format('truetype'),
+        url(@assets/fonts/Inter-Regular.woff) format('woff');
+    font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+    font-family: 'Inter-Medium';
+    src: url(@assets/fonts/Inter-Medium.eot);
+    src: url(@assets/fonts/Inter-Medium.eot?#iefix) format('embedded-opentype'),
+        url(@assets/fonts/Inter-Medium.otf) format('otf'),
+        url(@assets/fonts/Inter-Medium.svg#Inter-Medium) format('svg'),
+        url(@assets/fonts/Inter-Medium.ttf) format('truetype'),
+        url(@assets/fonts/Inter-Medium.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Inter-Bold';
+    src: url(@assets/fonts/Inter-Bold.eot);
+    src: url(@assets/fonts/Inter-Bold.eot?#iefix) format('embedded-opentype'),
+        url(@assets/fonts/Inter-Bold.otf) format('otf'),
+        url(@assets/fonts/Inter-Bold.svg#Inter-Bold) format('svg'),
+        url(@assets/fonts/Inter-Bold.ttf) format('truetype'),
+        url(@assets/fonts/Inter-Bold.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Inter-ExtraBold';
+    src: url(@assets/fonts/Inter-ExtraBold.eot);
+    src: url(@assets/fonts/Inter-ExtraBold.eot?#iefix) format('embedded-opentype'),
+        url(@assets/fonts/Inter-ExtraBold.otf) format('otf'),
+        url(@assets/fonts/Inter-ExtraBold.svg#Inter-ExtraBold) format('svg'),
+        url(@assets/fonts/Inter-ExtraBold.ttf) format('truetype'),
+        url(@assets/fonts/Inter-ExtraBold.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url(@assets/fonts/Roboto-Regular.eot);
+    src: url(@assets/fonts/Roboto-Regular.eot?#iefix) format('embedded-opentype'),
+        url(@assets/fonts/Roboto-Regular.otf) format('otf'),
+        url(@assets/fonts/Roboto-Regular.svg#Roboto-Regular) format('svg'),
+        url(@assets/fonts/Roboto-Regular.ttf) format('truetype'),
+        url(@assets/fonts/Roboto-Regular.woff) format('woff');
+}

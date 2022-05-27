@@ -1,3 +1,30 @@
+@import '@assets/scss/fonts.scss';
+
+
+$green25: #D3EDE1;
+$green50: #7DB59A;
+$green75: #5B9479;
+$green100: #4F896C;
+
+$purple50: #E84393;
+$purple75: #B03671;
+$purple100: #832552;
+
+$gray25: #C2C2C2;
+$gray50: #ADADAD;
+$gray75: #858585;
+$gray100: #5C5C5C;
+
+
+$blue75: #2F80ED;
+$blue100: #6C5CE7;
+
+$yellow: #FDCB6E;
+$black: #000000;
+$pink: #FF7675;
+$red: #CC1F1F;
+$white: #FFFFFF;
+
 *,
 *::before,
 ::after {
@@ -35,7 +62,10 @@ h6 {
 html,
 body {
     height: 100%;
-    line-height: 1;
+    font-family: 'Inter-Regular';
+    font-size: 16px;
+    line-height: 20px;
+    color: #2D3436;
 }
 .wrapper {
     overflow: hidden;
@@ -44,6 +74,22 @@ body {
     min-height: 100%;
 }
 
+
+.title {
+    font-family: 'Inter-Bold';
+    font-size: 36px;
+    line-height: 44px;
+    color: $black;
+}
+
+.label {
+    font-family: 'Inter-ExtraBold';
+    font-size: 12px;
+    line-height: 15px;
+    color: $gray50;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+}
 [class*="__container"] {
     max-width: 1087px;
     padding: 0px 15px;
