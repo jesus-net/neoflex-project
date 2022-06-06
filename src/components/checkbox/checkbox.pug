@@ -1,0 +1,13 @@
+mixin checkbox(element={})
+    -
+        let config = {
+        name: element.name || 'name',
+        value: element.value || 'value',
+        label: element.label || 'Keep me logged in',
+        checked: element.checked || false
+        }
+    .checkbox&attributes(attributes)
+        label.checkbox__label
+            input.checkbox__input(type="checkbox" name=config.name value=config.value checked=config.checked)
+            .checkbox__box
+            |!{config.label}

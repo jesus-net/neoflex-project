@@ -1,0 +1,40 @@
+@import '@assets/scss/global.scss';
+.checkbox {
+    position: relative;
+    .label {
+      margin-bottom: 16px;
+    }
+    &__input {
+      position: absolute;
+      appearance: none;
+      
+    }
+    &__label {
+      display: block;
+      cursor: pointer;
+      padding-left: 40px;
+      line-height: 22px;
+      font-size: 14px;
+      margin-bottom: 12.56px;
+    }
+  
+    &__box {
+      position: absolute;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #5C5C5C;
+      margin-left: -30px;
+      border-radius: 4px;
+      background: transparent;
+    }
+  
+    //Checked
+    &__input:checked+&__box {
+        background-color: $green50;
+    }
+  
+    &__input:checked:focus+&__box {
+        background-color: #5C5C5C;
+    }
+  }
