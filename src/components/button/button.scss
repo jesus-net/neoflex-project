@@ -1,0 +1,44 @@
+@import '@assets/scss/global.scss';
+.button {
+    width: 100%;
+    height: 52px;
+    border-radius: 16px;
+    font-family: 'Inter-Regular';
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 36px;
+    letter-spacing: 0.25px;
+    color: $white;
+    cursor: pointer;
+    &--submit {
+        background-color: $green50;
+        &:hover {
+            background-color: $green75;
+        }
+        &:active {
+            background-color: $green100;
+        }
+    }
+    &--reset {
+        background-color: $purple50;
+        &:hover {
+            background-color: $purple75;
+        }
+        &:active {
+            background-color: $purple100;
+        }
+    }
+    &--cancel {
+        background-color: $white;
+        color: $gray50;
+        border: 1px solid $gray50;
+        &:hover {
+            border-color: $gray75;
+            color: $green50;
+        }
+        &:active {
+            border-color: $green100;
+            color: $green100;
+        }
+    }
+}
