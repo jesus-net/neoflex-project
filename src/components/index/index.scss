@@ -1,56 +1,72 @@
 @import '@assets/scss/global.scss';
 
 .auth {
+    position: relative;
     flex: 1 1 auto;
-    height: 969px;
-    background: linear-gradient(to right, $green25 50%, $white 50%);
-    width: 100%;
+
     .auth__container {
-        padding-top: 100px;
+        height: 100%;
         display: flex;
         justify-content: space-between;
     }
 
-    &__poster,
+    &__overlay,
     &__block {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        width: 48.4%;
-        overflow: hidden;
+        width: 48.5%;
     }
+
+    &__overlay {
+        position: absolute;
+        height: 100%;
+        width: 50%;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        background-color: $green25;
+        transition: left 0.7s ease-in-out;
+
+        &--active {
+            left: 50%;
+        }
+
+        img {
+            max-width: 699px;
+            width: 100%;
+            height: 658px;
+            margin-bottom: 20px;
+        }
+    }
+
     &__block {
         gap: 92px;
-        padding-top: 21px;
     }
+
     &__form {
         max-width: 466px;
+        height: max-content;
         width: 100%;
-        height: 345px;
         overflow: hidden;
+    }
+
+    &__link {
+        text-align: center;
+        font-size: 14px;
+        line-height: 17px;
     }
 }
 
-.poster {
-    max-width: 699px;
-    width: 100%;
-    height: 658px;
-    /* object-fit: contain; */
-}
 
-.link {
-    text-align: center;
-    font-size: 14px;
-    line-height: 17px;
-}
 
 .block-1 {
     margin-bottom: 28px;
 }
 
 .block-2 {
-    margin-bottom: 26px;
+    margin-bottom: 25px;
 }
 
 .block-3 {
@@ -58,5 +74,5 @@
 }
 
 .block-4 {
-    margin-bottom: 15px;
+    margin-bottom: 16px;
 }

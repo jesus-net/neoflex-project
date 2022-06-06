@@ -11,5 +11,6 @@ mixin input(element={})
             when 'email': input.input__block.email(type="email", placeholder=config.placeholder || "Type your e-mail") 
             when 'password': input.input__block.password(type="password", placeholder=config.placeholder || "Type your password")
             when 'dropdown': input.input__block.dropdown(type="")
-            default: input.input__block.textfield(type="text", placeholder=config.placeholder || "Type claim title")
-        img(src=require(`@assets/img/icon-${config.type}.svg`), alt=`${config.type} icon`, srcset="")
+            when 'textfield': input.input__block.textfield(type="text", placeholder=config.placeholder || "Type claim title")
+        if config.type !== 'textfield'
+            img(src=require(`@assets/img/icon-${config.type}.svg`), alt=`${config.type} icon`, srcset="")
