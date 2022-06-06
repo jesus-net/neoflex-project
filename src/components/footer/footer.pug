@@ -1,0 +1,11 @@
+mixin footer(element={})
+    -
+        let config = {
+        type: element.type,
+        label: element.label,
+        placeholder: element.placeholder
+        } 
+    footer.footer
+        .footer__container
+            img.footer__logo(src=require("@assets/img/logo-company-mini.svg"), alt="logo footer") 
+            nav.footer__nav

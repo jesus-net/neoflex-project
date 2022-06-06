@@ -1,0 +1,12 @@
+@import '@assets/scss/global.scss';
+
+.footer {
+    width: 100%;
+    min-height: 97px;
+    background: $green50;
+
+    .footer__container {
+        padding-top: 16px;
+    }
+
+}
