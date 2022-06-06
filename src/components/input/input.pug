@@ -1,0 +1,15 @@
+mixin input(element={})
+    -
+        let config = {
+        type: element.type,
+        label: element.label,
+        placeholder: element.placeholder
+        }   
+    label.label= config.label || "change label"
+    .input&attributes(attributes)
+        case config.type
+            when 'email': input.input__block.email(type="email", placeholder=config.placeholder || "Type your e-mail") 
+            when 'password': input.input__block.password(type="password", placeholder=config.placeholder || "Type your password")
+            when 'dropdown': input.input__block.dropdown(type="")
+            default: input.input__block.textfield(type="text", placeholder=config.placeholder || "Type claim title")
+        img(src=require(`@assets/img/icon-${config.type}.svg`), alt=`${config.type} icon`, srcset="")

@@ -1,0 +1,32 @@
+@import '@assets/scss/global.scss';
+
+.input {
+    position: relative;
+    &__block {
+        display: block;
+        padding: 6px 0px 0px 16px;
+        max-width: 466px;
+        width: 100%;
+        height: 48px;
+        background: $gray25;
+        border-radius: 16px;
+        outline: none;
+
+        &::placeholder {
+            font-family: 'Inter-Regular';
+            font-size: 18px;
+            line-height: 32px;
+            color: $black;
+        }
+    
+        &:focus {
+            background: $yellow75;
+            border: 4px solid $yellow50;
+        }
+    }
+    img {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+    }
+}
