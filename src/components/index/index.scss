@@ -1,17 +1,19 @@
 @import '@assets/scss/global.scss';
 
 .auth {
-    position: relative;
-    flex: 1 1 auto;
+    flex: 1 0 auto;
+    height: 80%;
 
     .auth__container {
-        height: 100%;
+        position: relative;
         display: flex;
         justify-content: space-between;
+        height: 100%;
     }
 
     &__overlay,
     &__block {
+        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -26,8 +28,9 @@
         top: 0;
         left: 0;
         z-index: 100;
+        padding: 0px 20px 20px;
         background-color: $green25;
-        transition: left 0.7s ease-in-out;
+        transition: left 1s ease-in-out;
 
         &--active {
             left: 50%;
@@ -37,18 +40,17 @@
             max-width: 699px;
             width: 100%;
             height: 658px;
-            margin-bottom: 20px;
         }
     }
 
     &__block {
-        gap: 92px;
+        gap: 10.5%;
     }
 
     &__form {
         max-width: 466px;
-        height: max-content;
         width: 100%;
+        height: max-content;
         overflow: hidden;
     }
 
@@ -59,7 +61,14 @@
     }
 }
 
-
+.sign-in,
+.sign-up {
+    &--disabled {
+        transition-delay: 0.2s;
+        transition-duration: 0.1s;
+        visibility: hidden;
+    }
+}
 
 .block-1 {
     margin-bottom: 28px;
@@ -75,4 +84,80 @@
 
 .block-4 {
     margin-bottom: 16px;
+}
+
+
+@media (max-width: 1440px) {
+    .auth__overlay img {
+        object-fit: contain;
+    }
+
+    .sign-in>img,
+    .sign-up>img {
+        width: 96px;
+        height: 93px;
+    }
+
+    .auth__block {
+        gap: 0;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .auth {
+        .auth__container {
+            flex-direction: column;
+            align-items: center;
+            padding: 47px 15px 0px 15px;
+        }
+
+        .auth__block {
+            justify-content: normal;
+            width: 100%;
+            padding: 0;
+            gap: 12.5%;
+        }
+
+        .auth__overlay {
+            display: none;
+        }
+
+        .sign-up,
+        .sign-in {
+            &--disabled {
+                position: absolute;
+                transition: 0s;
+                top: -1000;
+                left: -1000;
+            }
+        }
+
+        .auth__link {
+            font-size: 12px;
+            line-height: 15px;
+        }
+
+        .block-1 {
+            margin-bottom: 20px;
+        }
+
+        .block-2 {
+            margin-bottom: 19px;
+        }
+
+        .sign-up {
+            .block-2 {
+                margin-bottom: 42px;
+            }
+        }
+
+        .block-3 {
+            margin-bottom: 27px;
+        }
+
+        .block-4 {
+            margin-bottom: 13px;
+        }
+    }
 }

@@ -2,11 +2,20 @@
 
 .footer {
     width: 100%;
-    min-height: 97px;
+    height: 97px;
     background: $green50;
 
     .footer__container {
         padding-top: 16px;
     }
+}
 
+@media (max-width: 768px) {
+    .footer {
+        height: 64px;
+
+        .footer__logo {
+            display: none;
+        }
+    }
 }

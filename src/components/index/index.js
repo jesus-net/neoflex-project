@@ -5,15 +5,17 @@ import '@components/checkbox/checkbox.js';
 import '@components/button/button.js';
 import '@components/footer/footer.js';
 
-const linkSignIn = document.querySelector('.sign-in__link');
-const linkSignUp = document.querySelector('.sign-up__link');
+const linkAuth = document.querySelectorAll('.auth__link a');
+
+const sectionSignIn = document.querySelector('.sign-in');
+const sectionSignUp = document.querySelector('.sign-up');
 
 const overlay = document.querySelector('.auth__overlay');
 
-linkSignUp.addEventListener('click', () => {
-	overlay.classList.remove("auth__overlay--active");
-});
-
-linkSignIn.addEventListener('click', () => {
-	overlay.classList.add("auth__overlay--active");
-});
+Array.from(linkAuth).map(item => {
+	item.addEventListener('click', () => {
+		overlay.classList.toggle("auth__overlay--active");
+		sectionSignIn.classList.toggle("sign-in--disabled");
+		sectionSignUp.classList.toggle("sign-up--disabled");
+	});
+})

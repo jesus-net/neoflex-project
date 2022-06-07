@@ -65,17 +65,22 @@ h6 {
 
 html,
 body {
-    height: 975px;
+    height: 100%;
+    line-height: 1;
+}
+body,input::placeholder {
     font-family: 'Inter-Regular';
     font-size: 16px;
     line-height: 20px;
     color: #2D3436;
+    overflow-y: hidden;
 }
 .wrapper {
-    height: 100%;
+    position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 
@@ -98,15 +103,13 @@ body {
 }
 [class*="__container"] {
     margin: 0 auto;
-    width: 100%;
     padding: 0 30px;
 }
 
-::-webkit-scrollbar-thumb {
+/* ::-webkit-scrollbar-thumb {
     background: $green100;
-}
+} */
 ::-webkit-scrollbar {
-    width: 10px;
     display: none;
 }
 
