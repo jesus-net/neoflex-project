@@ -1,12 +1,12 @@
 @import '@assets/scss/global.scss';
 
 .input {
+    width: 100%;
     position: relative;
 
     &__block {
         display: block;
         padding: 4px 0px 0px 17px;
-        max-width: 466px;
         width: 100%;
         height: 48px;
         background: $gray25;
