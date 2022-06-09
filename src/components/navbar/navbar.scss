@@ -1,0 +1,29 @@
+@import '@assets/scss/global.scss';
+.navbar {
+    height: 100%;
+    width: 96px;
+    padding-top: 32px;
+    background: linear-gradient(180deg, #D5EEE2 0%, $green50 43.23%);
+
+    &__logo {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 48px;
+        img {
+            width: 71px;
+            height: 71px;
+        }
+    }
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    } 
+    &__item {
+        width: 100%;
+        text-align: center;
+    }
+    &__item--active {
+        border-left: 100% solid $white;
+    }
+}

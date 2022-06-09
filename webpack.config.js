@@ -7,7 +7,7 @@
 
 const isDev = process.env.NODE_ENV === "development", isProd = !isDev;
 
-let pages = ["index"];
+let pages = ["main-page", "index", "auth"];
 
 const plugins = [];
 
