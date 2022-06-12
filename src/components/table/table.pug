@@ -1,0 +1,16 @@
+
+mixin table(elements=[])
+    table.table
+        tr.table__rows.table__title
+            th Title
+            th Created
+            th Type
+            th Status
+            th Actions
+        each value in elements
+            tr.table__rows
+                td=value.title 
+                td=value.created 
+                td #[p(class=`table__type table__type--${value.type}`)=value.type] 
+                td #[div(class=`table__status table__status--${value.status.split(' ').join('')}`)=value.status]
+                td #[a(class='table__link')=value.actions]

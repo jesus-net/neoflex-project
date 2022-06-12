@@ -1,0 +1,21 @@
+@import '@assets/scss/global.scss';
+
+.container {
+    display: grid;
+    grid-template-areas: "navbar header""navbar main";
+    grid-template-columns: 96px 1fr;
+    grid-template-rows: 96px;
+    height: 100vh;
+}
+
+.main-home {
+    .main-home__container {
+        padding: 58px 58px 0 55px;
+        width: 100%;
+    }
+
+    &__button {
+        width: 174px;
+        float: right;
+    }
+}
