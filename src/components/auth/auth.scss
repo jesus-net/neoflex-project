@@ -13,12 +13,13 @@
 
     &__overlay,
     &__block {
+        padding: 0 24px;
         height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        width: 48.5%;
+        width: 50%;
     }
 
     &__overlay {
@@ -39,7 +40,8 @@
         img {
             max-width: 699px;
             width: 100%;
-            height: 658px;
+            max-height: 658px;
+            height: 100%;
         }
     }
 
@@ -53,11 +55,31 @@
         height: max-content;
         overflow: hidden;
     }
+    &__email {
+        margin-bottom: 28px;
+    }
+    
+    &__password {
+        margin-bottom: 25px;
+    }
+    
+    &__checkbox {
+        margin-bottom: 32px;
+    }
+    
+    &__submit {
+        margin-bottom: 16px;
+        width: 100%;
+    }
+    
 
     &__link {
         text-align: center;
         font-size: 14px;
         line-height: 17px;
+        a {
+            text-decoration: none;
+        }
     }
 }
 
@@ -68,22 +90,6 @@
         transition-duration: 0.1s;
         visibility: hidden;
     }
-}
-
-.block-1 {
-    margin-bottom: 28px;
-}
-
-.block-2 {
-    margin-bottom: 25px;
-}
-
-.block-3 {
-    margin-bottom: 32px;
-}
-
-.block-4 {
-    margin-bottom: 16px;
 }
 
 
@@ -138,25 +144,25 @@
             line-height: 15px;
         }
 
-        .block-1 {
+        .auth__email {
             margin-bottom: 20px;
         }
 
-        .block-2 {
+        .auth__password {
             margin-bottom: 19px;
         }
 
         .sign-up {
-            .block-2 {
+            .auth__password {
                 margin-bottom: 42px;
             }
         }
 
-        .block-3 {
+        .auth__checkbox {
             margin-bottom: 27px;
         }
 
-        .block-4 {
+        .auth__submit {
             margin-bottom: 13px;
         }
     }
