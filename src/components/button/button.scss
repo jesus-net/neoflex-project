@@ -8,7 +8,7 @@
     letter-spacing: 0.25px;
     color: $white;
     cursor: pointer;
-    &--submit {
+    &.submit {
         background-color: $green50;
         &:hover {
             background-color: $green75;
@@ -17,7 +17,7 @@
             background-color: $green100;
         }
     }
-    &--reset {
+    &.reset {
         background-color: $purple50;
         &:hover {
             background-color: $purple75;
@@ -26,7 +26,7 @@
             background-color: $purple100;
         }
     }
-    &--cancel {
+    &.cancel {
         background-color: $white;
         color: $gray50;
         border: 1px solid $gray50;

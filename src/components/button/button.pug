@@ -5,6 +5,6 @@ mixin button(element={})
             placeholder: element.placeholder 
         }
     case config.type
-        when 'submit': button.button.button--submit&attributes(attributes)(type="submit")= config.placeholder || "Create"
-        when 'reset': button.button.button--reset&attributes(attributes)(type="reset")= config.placeholder || "Decline"
-        when 'cancel': button.button.button--cancel&attributes(attributes)= config.placeholder || "Cancel"
+        when 'submit': button.button.submit&attributes(attributes)(type="submit")= config.placeholder || "Create"
+        when 'reset': button.button.reset&attributes(attributes)(type="reset")= config.placeholder || "Decline"
+        when 'cancel': button.button.cancel&attributes(attributes)= config.placeholder || "Cancel"
