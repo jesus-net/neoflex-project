@@ -1,20 +1,24 @@
 mixin navbar(element={})
     -
         let config = {
-            list: element.list || ['home', 'global', 'archive', 'pie-chart', 'cash', 'database', 'navigation']
+            list: element.list || ['home', 'services', 'storage', 'charts', 'currency', 'base', 'locations']
         }
-    .navbar 
-        a.navbar__logo(href = 'main-page.html')
-            img(src=require('@assets/img/logo-company-mini.svg'))
-        nav.navbar__nav
-            ul.navbar__list
-                each item in config.list
-                    if (item === 'home')
-                        li.navbar__item.navbar__item--active
-                            img(src=require(`@assets/img/icon-${item}.svg`), alt=`${item} icon`, srcset="")                        
-                    else
-                        li.navbar__item
-                            img(src=require(`@assets/img/icon-${item}.svg`), alt=`${item} icon`, srcset="")
+    .navbar
+        .navbar__container
+            nav.navbar__nav
+                a.navbar__logo(href = 'main-page.html')
+                    img(src=require('@assets/img/logo-company-mini.svg'))
+                ul.navbar__list
+                    each item in config.list
+                        if (item === 'home')
+                            li.navbar__item.navbar__item--active
+
+                                img(src=require(`@assets/img/icon-${item}.svg`), alt=`${item} icon`, srcset="")
+                                p=item                        
+                        else
+                            li.navbar__item
+                                img(src=require(`@assets/img/icon-${item}.svg`), alt=`${item} icon`, srcset="")
+                                p=item
 
             
 
