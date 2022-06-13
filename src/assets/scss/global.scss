@@ -73,11 +73,11 @@ body,input::placeholder {
     font-size: 16px;
     line-height: 20px;
     color: #2D3436;
-   /*  overflow-y: hidden; */
+/*     overflow-y: hidden; */
 }
 .wrapper {
     position: relative;
- /*    overflow: hidden; */
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -104,6 +104,10 @@ body,input::placeholder {
 }
 [class*="__container"] {
     margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .title {font-size: 24px}
 }
 
 ::-webkit-scrollbar-thumb {
