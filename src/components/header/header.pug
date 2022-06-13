@@ -3,8 +3,10 @@ mixin header
     .header 
         .header__container
             nav.header__nav
+                .header__burger
+                    span
                 +input({type: 'search'})(class="header__search")
-                .header__account
+                .header__overlay
                     a.header__notification.header__notification--active
                         img(src=require("@assets/img/icon-notification.svg"), alt="bell") 
                     .header__avatar 
