@@ -14,6 +14,7 @@
         outline: none;
         font-size: 18px;
         line-height: 32px;
+
         &::placeholder {
             font-family: 'Inter-Regular';
             font-size: 18px;
@@ -21,16 +22,84 @@
             color: $black;
         }
 
-        &:focus {
+        /*        &:focus {
             background: $yellow75;
             border: 4px solid $yellow50;
-        }
+        } */
     }
 
     img {
         position: absolute;
-        top: 3px;
+        bottom: 4px;
         right: 3px;
+        cursor: pointer;
+    }
+
+
+}
+
+.dropdown {
+    position: relative;
+
+    &__vector {
+        transition: transform 0.2s ease-in-out;
+
+        &--active {
+            transform: rotate(180deg);
+        }
+    }
+
+    &__menu {
+        position: absolute;
+        top: 39px;
+        display: none;
+        flex-direction: column;
+        gap: 25px;
+        width: 100%;
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
+        padding: 20px 16px;
+        font-size: 18px;
+        background: $gray25;
+        z-index: 1;
+
+        &--active {
+            display: flex;
+        }
+    }
+
+
+
+    &___select {
+        cursor: pointer;
+        position: relative;
+        padding-left: 26px;
+
+        &::before {
+            content: '';
+            top: 2px;
+            left: 0;
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+        }
+
+        &.hardware::before {
+            background: $green50;
+        }
+
+        &.software::before {
+            background: $pink;
+        }
+
+        &.troubleshooting::before {
+            background: $blue100;
+        }
+
+        &.networking::before {
+            background: $yellow100;
+        }
     }
 }
 
@@ -39,7 +108,7 @@
         img {
             width: 25px;
             height: 25px;
-            top: 12px;
+            bottom: 10px;
             right: 13px;
         }
     }

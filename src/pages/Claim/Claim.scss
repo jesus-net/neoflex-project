@@ -1,0 +1,40 @@
+@import '@assets/scss/global.scss';
+
+
+.claim {
+    overflow-y: auto;
+
+    &::-webkit-scrollbar-thumb {
+        background: $green50;
+    }
+
+    &::-webkit-scrollbar {
+        background: #FFFFFF;
+        width: 8px;
+    }
+    &__container {
+        padding: 56px 0 0px 64px;
+    }
+    &__form {
+        display: flex;
+        flex-direction: column;
+        max-width: 589px;
+        width: 100%;
+        margin-top: 48px;
+        gap: 40px;
+    }
+    &__buttons {
+        display: flex;
+        gap: 24px;
+        width: 188px;
+    }
+}
+
+@media (max-width: 768px) {
+    .claim {
+        height: 100vh;
+        .claim__container {
+            padding: 90px 16px 0px 16px;
+        }
+    }
+}

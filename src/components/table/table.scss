@@ -4,7 +4,8 @@
     width: 100%;
     margin-top: 50px;
     border-collapse: collapse;
-
+    margin-bottom: 46px;
+    overflow: hidden;
     &__title {
         display: none;
     }
@@ -21,6 +22,7 @@
         background: #F1F1F1;
         justify-content: left;
         height: 58px;
+        text-align: left;
     }
 
     &__type {
@@ -91,7 +93,7 @@
 
     &__link {
         display: block;
-
+        text-decoration: underline;
         &::first-letter {
             text-transform: uppercase;
         }
@@ -113,7 +115,7 @@
             display: none;
         }
 
-        .table__block {
+        .table__body {
             display: grid;
             position: relative;
             grid-template-columns: 50% 50%;
@@ -129,11 +131,6 @@
             grid-template-rows: 36px 36px;
             text-align: left;
             font-family: 'Inter-Bold';
-
-            .column-1,
-            .column-5 {
-                display: none;
-            }
         }
 
         .table__data {
@@ -188,7 +185,6 @@
             .table__status {
                 width: 93px;
                 height: 24px;
-                padding: 7px 16px 8px;
                 font-size: 8px;
             }
         }

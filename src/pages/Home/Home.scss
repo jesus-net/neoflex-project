@@ -1,0 +1,37 @@
+@import '@assets/scss/global.scss';
+
+.home {
+    overflow-y: auto;
+    
+    &::-webkit-scrollbar-thumb {
+        background: $green50;
+    }
+
+    &::-webkit-scrollbar {
+        background: #FFFFFF;
+        width: 8px;
+    }
+
+    &__container {
+        padding: 58px 58px 0 56px;
+    }
+
+    &__button {
+        width: 174px;
+        float: right;
+    }
+}
+
+@media (max-width: 768px) {
+    .home {
+        height: 100vh;
+        .home__container {
+            padding: 90px 16px 0px 15px;
+        }
+
+        .home__button {
+            width: 48px;
+            height: 48px;
+        }
+    }
+}

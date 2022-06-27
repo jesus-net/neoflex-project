@@ -1,153 +1,120 @@
-  path = require("path"),
-  webpack = require("webpack"),
-  HTMLWebpackPlugin = require("html-webpack-plugin"),
-  CopyWebpackPlugin = require("copy-webpack-plugin"),
-  MiniCssExtractPlugin = require("mini-css-extract-plugin"),
-  CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const isDev = process.env.NODE_ENV === "development", isProd = !isDev;
+let pages = ['index', 'main-page', 'auth'];
+const mode = process.env.NODE_ENV === 'development' ? 'development' : 'production';
 
-let pages = ["main-page", "index", "auth"];
-
-const plugins = [];
-
-if (isProd) { 
-  plugins.push(
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFileName: "[id].css",
-    })
-  );
-}
-
-const entryFiles = (arr) => {
-  let entrys = {};
-  for (let page of arr) {
-    entrys[page] = `@components/${page}/${page}.js`;
-  }
-  return entrys;
-};
-
-for (let page of pages) {
-  plugins.push(
-    new HTMLWebpackPlugin({
-      filename: `${page}.html`,
-      template: `./pages/${page}.pug`,
-      chunks: [`${page}`],
-    })
-  );
-}
-
-plugins.push(
-  new CopyWebpackPlugin({
-    patterns: [
-      {
-        from: path.resolve(__dirname, "src/assets/img"),
-        to: path.resolve(__dirname, "dist/img"),
-      },
-    ],
-  })
-);
-
+/* const entryFiles = (arr) => {
+    const entrys = {App: './index.js'};
+    for (let page of arr) {
+        entrys[page] = `@components/${page}/${page}.js`;
+    }
+    return entrys;
+}; */
 
 
 
 module.exports = {
-  mode: isDev ? "development" : "production",
-  context: path.resolve(__dirname, "src"),
-  target: process.env.NODE_ENV === "development" ? "web" : "browserslist",
-  devtool: isDev ? "source-map" : false,
-
-  entry: entryFiles(pages),
-
-  output: {
-    filename: "js/[name].[contenthash].js",
-    path: path.resolve(__dirname, "dist"),
-    clean: true,
-  },
-
-  resolve: {
-    extensions: [".js", ".json"],
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-      "@assets": path.resolve(__dirname, "./src/assets"),
-      "@components": path.resolve(__dirname, "./src/components"),
+    mode: mode,
+    context: path.resolve(__dirname, "src"),
+    target: process.env.NODE_ENV === "development" ? "web" : "browserslist",
+    devtool: process.env.NODE_ENV === "development" ? "source-map" : false,
+    entry: './index.js',
+    output: {
+        path: path.resolve(__dirname, './dist'),
+        filename: mode === 'production' ? '[name].[contenthash].js' : '[name].js'
     },
-  },
-
-  optimization: {
-    minimize: isProd,
-    minimizer: [
-      `...`,
-      new CssMinimizerPlugin({
-        minimizerOptions: {
-          preset: [
-            "default",
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: mode === 'production' ? '[name].[contenthash].css' : '[name].css'
+        }),
+        new HtmlWebpackPlugin({
+            title: 'React && Webpack',
+            template: './index.html',
+            favicon: './assets/favicon/favicon.ico'
+        }),
+        new CopyWebpackPlugin({
+            patterns: [{
+                from: path.resolve(__dirname, 'src/assets/img'),
+                to: path.resolve(__dirname, 'prod/img'),
+            }]
+        }),
+        new CleanWebpackPlugin(),
+    ],
+    devServer: {
+        historyApiFallback: true,
+        static: {
+            directory: path.join(__dirname, 'dist'),
+        },
+        compress: true,
+        port: 3000,
+        hot: true
+    },
+    module: {
+        rules: [
             {
-              discardComments: {
-                removeAll: true,
-              },
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: ['babel-loader']
             },
-          ],
-        },
-        sourceMap: isDev,
-      }),
-    ],
-    splitChunks: {
-      chunks: "all",
+            {
+                test: /\.html$/i,
+                loader: 'html-loader'
+            },
+            {
+                test: /\.(sa|sc|c)ss$/,
+                use: [
+                    (mode === 'development') ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            postcssOptions: {
+                                plugins: [
+                                    [
+                                        "postcss-preset-env",
+                                        {
+                                            //option
+                                        }
+                                    ]
+                                ]
+                            }
+                        }
+                    },
+                    'sass-loader',
+                ]
+            },
+            {
+                test: /\.(png|jpg|jpeg|gif|svg)$/,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'images/[hash][ext]',
+                }
+            },
+            {
+                test: /\.(ttf|woff|woff2|eot|svg|otf)$/,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'fonts/[hash][ext]',
+                },
+            },
+            {
+                test: /\.pug$/,
+                use: 'pug-loader'
+            }
+        ]
     },
-  },
-
-  devServer: {
-    port: 8888,
-    contentBase: path.resolve(__dirname, "dist"),
-    open: true,
-    hot: isDev,
-  },
-
-  plugins,
-
-  module: {
-    rules: [
-      {
-        test: /\.html$/,
-        type: "asset/resource",
-        generator: {
-          filename: "[name][ext]",
+    resolve: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+        alias: {
+            '@': path.resolve(__dirname, './src'),
+            '@assets': path.resolve(__dirname, './src/assets'),
+            '@img': path.resolve(__dirname, './src/assets/img'),
+            '@components': path.resolve(__dirname, './src/components'),
+            '@pages': path.resolve(__dirname, './src/pages')
         },
-      },
-      {
-        test: /\.html$/i,
-        use: ["extract-loader", "html-loader"],
-      },
-      {
-        test: /\.(sa|sc|c)ss$/,
-        use: [
-          isDev ? "style-loader" : {
-                loader: MiniCssExtractPlugin.loader,
-              },
-          "css-loader",
-          "sass-loader",
-        ],
-      },
-      {
-        test: /\.(png|jpg|gif|svg)$/,
-        type: "asset/resource",
-        generator: {
-          filename: "images/[hash][ext]",
-        },
-      },
-      {
-        test: /\.(ttf|woff|woff2|eot|svg|otf)$/,
-        type: "asset/resource",
-        generator: {
-          filename: "fonts/[hash][ext]",
-        },
-      },
-      {
-        test: /\.pug$/,
-        use: "pug-loader",
-      },
-    ],
-  },
-};
+    }
+}

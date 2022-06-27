@@ -1,10 +1,9 @@
 @import '@assets/scss/global.scss';
 
-.auth {
-    flex: 1 0 auto;
+.login {
+    flex: 1 1 auto;
     height: 80%;
-
-    .auth__container {
+    &__container {
         position: relative;
         display: flex;
         justify-content: space-between;
@@ -14,12 +13,22 @@
     &__overlay,
     &__block {
         padding: 0 24px;
-        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
         width: 50%;
+        overflow: auto;
+
+        &::-webkit-scrollbar-thumb {
+            background: $green50;
+            border-radius: 16px;
+        }
+
+        &::-webkit-scrollbar {
+            background: #FFFFFF;
+            width: 8px;
+        }
     }
 
     &__overlay {
@@ -32,12 +41,13 @@
         padding: 0px 20px 20px;
         background-color: $green25;
         transition: left 1s ease-in-out;
-
+        
         &--active {
             left: 50%;
         }
 
         img {
+            object-fit: contain;
             max-width: 699px;
             width: 100%;
             max-height: 658px;
@@ -46,91 +56,59 @@
     }
 
     &__block {
-        gap: 10.5%;
+        gap: 96px;
+        padding: 25px;
+        height: 100%;
+        &--disabled {
+            transition-delay: 0.2s;
+            transition-duration: 0.1s;
+            visibility: hidden;
+        }
     }
 
     &__form {
+        display: flex;
+        flex-direction: column;
         max-width: 466px;
         width: 100%;
         height: max-content;
-        overflow: hidden;
+        gap: 25px;
     }
-    &__email {
-        margin-bottom: 28px;
-    }
-    
-    &__password {
-        margin-bottom: 25px;
-    }
-    
-    &__checkbox {
-        margin-bottom: 32px;
-    }
-    
-    &__submit {
-        margin-bottom: 16px;
-        width: 100%;
-    }
-    
 
     &__link {
         text-align: center;
         font-size: 14px;
         line-height: 17px;
+
         a {
             text-decoration: none;
         }
     }
 }
 
-.sign-in,
-.sign-up {
-    &--disabled {
-        transition-delay: 0.2s;
-        transition-duration: 0.1s;
-        visibility: hidden;
-    }
-}
+
 
 
 @media (max-width: 1440px) {
-    .auth__overlay img {
-        object-fit: contain;
-    }
-
-    .sign-in>img,
-    .sign-up>img {
+    .login__block > img {
         width: 96px;
         height: 93px;
-    }
-
-    .auth__block {
         gap: 0;
     }
 }
 
 
 @media (max-width: 768px) {
-    .auth {
-        .auth__container {
-            flex-direction: column;
-            align-items: center;
-            padding: 47px 15px 0px 15px;
-        }
+    .login {
+        flex-direction: column;
+        align-items: center;
+        padding: 47px 15px 0px 15px;
 
-        .auth__block {
+        .login__block {
             justify-content: normal;
             width: 100%;
             padding: 0;
-            gap: 12.5%;
-        }
-
-        .auth__overlay {
-            display: none;
-        }
-
-        .sign-up,
-        .sign-in {
+            gap: 72px;
             &--disabled {
                 position: absolute;
                 transition: 0s;
@@ -139,31 +117,19 @@
             }
         }
 
-        .auth__link {
+        .login__overlay {
+            display: none;
+        }
+
+        .login__link {
             font-size: 12px;
             line-height: 15px;
         }
 
-        .auth__email {
-            margin-bottom: 20px;
-        }
-
-        .auth__password {
-            margin-bottom: 19px;
-        }
-
         .sign-up {
-            .auth__password {
+            .login__password {
                 margin-bottom: 42px;
             }
-        }
-
-        .auth__checkbox {
-            margin-bottom: 27px;
-        }
-
-        .auth__submit {
-            margin-bottom: 13px;
         }
     }
 }

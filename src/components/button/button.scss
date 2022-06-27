@@ -1,5 +1,8 @@
 @import '@assets/scss/global.scss';
 .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 52px;
     border-radius: 16px;
     font-weight: 700;
@@ -8,7 +11,9 @@
     letter-spacing: 0.25px;
     color: $white;
     cursor: pointer;
-    &.submit {
+    width: 100%;
+    transition: background-color 0.3s ease-in-out;
+    &.submit, &.plus {
         background-color: $green50;
         &:hover {
             background-color: $green75;
@@ -38,5 +43,11 @@
             border-color: $green100;
             color: $green100;
         }
+    }
+}
+
+@media(max-width: 768px) {
+    .plus {
+        font-size: 0;
     }
 }
