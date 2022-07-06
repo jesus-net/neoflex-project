@@ -1,13 +1,13 @@
-import React, { useState } from "react"; 
+import React from "react"; 
 import {Link} from "react-router-dom";
 import "@components/Header/Header.scss";
-import Input from "@components/Input/Input";
+import Input from "@UI/Input/Input";
 import iconBell from "@img/icon-notification.svg";
 import picAvatar from "@img/avatar.jpg";
 import iconExit from "@img/icon-exit.svg";
 
 
-const Header = ({onClickMenu}) => (
+const Header = ({onClickMenu, isSearch = true}) => (
   <header className="header">
     <div className="header__container">
       <nav className="header__nav">
@@ -15,7 +15,7 @@ const Header = ({onClickMenu}) => (
           <span></span>
         </div>
         <div className="header__search">
-          <Input type="search" />
+          {isSearch&&<Input type="search" />}
         </div>
         <div className="header__overlay">
           <a
