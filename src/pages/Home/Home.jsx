@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "@pages/Home/Home.scss";
-import Button from "@components/Button/Button";
+import Button from "@UI/Button/Button";
 import Table from "@components/Table/Table";
 import Pagination from "@components/Pagination/Pagination";
-import axios from "axios";
 
 const Home = ({onClickMain}) => {
 
