@@ -1,13 +1,16 @@
-import ReactDOM from "react-dom";
+import React from 'react';
 import App from "./App";
 import {BrowserRouter} from "react-router-dom";
 
+import { createRoot } from 'react-dom/client';
+const container = document.getElementById('root');
+const root = createRoot(container);
 
-ReactDOM.render(
-    <BrowserRouter>
+root.render(<React.StrictMode>
+<BrowserRouter>
     <App />
-    </BrowserRouter>,
-document.getElementById("body"));
+    </BrowserRouter>
+</React.StrictMode>);
 
 const devMode = process.env.NODE_ENV === 'development';
 if (devMode && module && module.hot) {
