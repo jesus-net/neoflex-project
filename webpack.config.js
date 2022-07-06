@@ -7,14 +7,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 let pages = ['index', 'main-page', 'auth'];
 const mode = process.env.NODE_ENV === 'development' ? 'development' : 'production';
 
-/* const entryFiles = (arr) => {
-    const entrys = {App: './index.js'};
-    for (let page of arr) {
-        entrys[page] = `@components/${page}/${page}.js`;
-    }
-    return entrys;
-}; */
-
 
 
 module.exports = {
@@ -114,6 +106,7 @@ module.exports = {
             '@assets': path.resolve(__dirname, './src/assets'),
             '@img': path.resolve(__dirname, './src/assets/img'),
             '@components': path.resolve(__dirname, './src/components'),
+            '@UI': path.resolve(__dirname, './src/components/UI'),
             '@pages': path.resolve(__dirname, './src/pages')
         },
     }
