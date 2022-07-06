@@ -37,7 +37,7 @@ const App = () => {
           element={
             <div className="container">
               <Navbar isActive={navbarOpened} />
-              <Header onClickMenu={() => setNavbarOpened(!navbarOpened)} />
+              <Header onClickMenu={() => setNavbarOpened(!navbarOpened)} isSearch={false} />
               <Claim onClickMain={() => setNavbarOpened(false)} />
             </div>
           }
