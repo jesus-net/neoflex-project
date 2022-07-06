@@ -1,0 +1,14 @@
+.claim-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 589px;
+    width: 100%;
+    margin-top: 48px;
+    gap: 35px;
+
+    &__buttons {
+        display: flex;
+        gap: 24px;
+        width: 188px;
+    }
+}
