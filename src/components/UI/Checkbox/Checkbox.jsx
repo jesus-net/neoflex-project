@@ -6,8 +6,8 @@ const Checkbox = ({ name, value, label}) => (
       <input
         className="checkbox__input"
         type="checkbox"
-        name={name || "name"}
-        value={value || "value"}
+        name={name}
+        value={value}
       ></input>
       <div className="checkbox__box"></div>
       {label || "Keep me logged in"}
