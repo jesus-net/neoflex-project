@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Header from "@components/Header/Header";
 import Navbar from "@components/Navbar/Navbar";
 import Footer from "@components/Footer/Footer";
-import Login from "@pages/Login/Login";
+import Auth from "@pages/Auth/Auth";
 import Home from "@pages/Home/Home";
 import Claim from "@pages/Claim/Claim";
 import NotFound from "@pages/Error/NotFound";
@@ -27,7 +27,7 @@ const App = () => {
           path="/login"
           element={
             <>
-              <Login />
+              <Auth />
               <Footer />
             </>
           }
