@@ -1,172 +1,157 @@
-@import '@assets/scss/global.scss';
+@import "@assets/scss/global.scss";
 
 .input {
-    width: 100%;
+  width: 100%;
+  position: relative;
+
+  &__field {
     position: relative;
+    display: flex;
+    padding-left: 16px;
+    padding-right: 40px;
+    align-items: center;
+    width: 100%;
+    height: 48px;
+    background: $gray25;
+    border-radius: 16px;
+    outline: none;
+    font-size: 18px;
+    line-height: 32px;
 
-    &__field {
-        position: relative;
-        display: flex;
-        padding-left: 16px;
-        align-items: center;
-        width: 100%;
-        height: 48px;
-        background: $gray25;
-        border-radius: 16px;
-        outline: none;
-        font-size: 18px;
-        line-height: 32px;
-
-        &::placeholder {
-            font-family: 'Inter-Regular';
-            font-size: 18px;
-            line-height: 32px;
-            color: $black;
-        }
-
-        &--active {
-            padding-left: 42px;
-        }
+    &::placeholder {
+      font-family: "Inter-Regular";
+      font-size: 18px;
+      line-height: 32px;
+      color: $black;
     }
 
-    label~img {
-        position: absolute;
-        top: 30px;
-        right: 3px;
-        cursor: pointer;
+    &--active {
+      padding-left: 42px;
     }
+  }
 
-    img {
-        position: absolute;
-        top: 3px;
-        right: 3px;
-    }
-
-    &__error {
-        font-size: 18px;
-        line-height: 32px;
-        color: $red;
-    }
-
-
+  img {
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+  }
 }
 
 .dropdown {
-    .type {
-        bottom: 16px;
-        left: 16px;
-        position: absolute;
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        z-index: 1;
+  .type {
+    bottom: 16px;
+    left: 16px;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  &__vector {
+    transition: transform 0.2s ease-in-out;
+    pointer-events: none;
+    &--active {
+      transform: rotate(180deg);
     }
+  }
 
-    &__vector {
-        transition: transform 0.2s ease-in-out;
+  &__menu {
+    position: absolute;
+    top: 65px;
+    display: none;
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    padding: 20px 16px;
+    font-size: 18px;
+    background: $gray25;
+    z-index: 1;
 
-        &--active {
-            transform: rotate(180deg);
-        }
+    &--active {
+      display: flex;
     }
+  }
 
-    &__menu {
-        position: absolute;
-        top: 65px;
-        display: none;
-        flex-direction: column;
-        gap: 25px;
-        width: 100%;
-        border-bottom-left-radius: 16px;
-        border-bottom-right-radius: 16px;
-        padding: 20px 16px;
-        font-size: 18px;
-        background: $gray25;
-        z-index: 1;
+  &___select {
+    cursor: pointer;
+    position: relative;
+    padding-left: 26px;
 
-        &--active {
-            display: flex;
-        }
+    &::before {
+      content: "";
+      top: 2px;
+      left: 0;
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
     }
+  }
 
-    &___select {
-        cursor: pointer;
-        position: relative;
-        padding-left: 26px;
-
-        &::before {
-            content: '';
-            top: 2px;
-            left: 0;
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-        }
-    }
-
-    .input__field {
-        cursor: pointer;
-    }
+  .input__field {
+    cursor: pointer;
+  }
 }
 
 .search {
-    .input__field {
-        padding-left: 26px;
-        color: $gray50;
+  .input__field {
+    padding-left: 26px;
+    color: $gray50;
 
-        &::placeholder {
-            color: $gray50;
-        }
+    &::placeholder {
+      color: $gray50;
     }
+  }
 }
-
+.textarea {
+  .input__field {
+    resize: none;
+    overflow: hidden;
+  }
+}
 .Hardware::before,
 .Hardware.type {
-    background: $green50;
+  background: $green50;
 }
 
 .Software::before,
 .Software.type {
-    background: $pink;
+  background: $pink;
 }
 
 .Troubleshooting::before,
 .Troubleshooting.type {
-    background: $blue100;
+  background: $blue100;
 }
 
 .Networking::before,
 .Networking.type {
-    background: $yellow100;
+  background: $yellow100;
 }
 
-
-
 @media (max-width: 768px) {
-    .input {
-        label~img {
-            top: 39px;
-            width: 25px;
-            height: 25px;
-            right: 14px;
-        }
-
-        img {
-            width: 25px;
-            height: 25px;
-            bottom: 10px;
-            right: 13px;
-        }
+  .input {
+    label ~ img {
+      top: 39px;
+      width: 25px;
+      height: 25px;
+      right: 14px;
     }
 
-    .input__field::placeholder,
-    .input__field {
-        font-size: 16px;
-        line-height: 19px;
+    img {
+      width: 25px;
+      height: 25px;
+      bottom: 10px;
+      right: 13px;
     }
+  }
 
-    .input__error {
-        font-size: 16px;
-    }
+  .input__field::placeholder,
+  .input__field {
+    font-size: 16px;
+    line-height: 19px;
+  }
 }
