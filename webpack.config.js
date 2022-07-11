@@ -107,6 +107,7 @@ module.exports = {
             '@img': path.resolve(__dirname, './src/assets/img'),
             '@components': path.resolve(__dirname, './src/components'),
             '@UI': path.resolve(__dirname, './src/components/UI'),
+            '@Form': path.resolve(__dirname, './src/components/Form'),
             '@pages': path.resolve(__dirname, './src/pages')
         },
     }
