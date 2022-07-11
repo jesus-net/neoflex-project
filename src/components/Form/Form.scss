@@ -1,0 +1,82 @@
+@import '@assets/scss/global.scss';
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    &-auth {
+        max-width: 466px;
+        max-height: 596px;
+        gap: 96px;
+        height: 100%;
+
+        &>img {
+            width: 165px;
+            height: 161px;
+            align-self: center;
+        }
+
+        &__content {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        &__link {
+            text-align: center;
+            font-size: 14px;
+            line-height: 17px;
+            padding-bottom: 20px;
+            a {
+                text-decoration: none;
+            }
+        }
+
+    }
+
+    &-claim {
+        max-width: 589px;
+        margin-top: 48px;
+        gap: 35px;
+
+        &__buttons {
+            display: flex;
+            gap: 24px;
+            width: 188px;
+        }
+    }
+
+    &__error {
+        font-size: 18px;
+        line-height: 32px;
+        color: $red;
+        &--warning {
+            font-size: 18px;
+            line-height: 32px;
+            color: $yellow100;
+        }
+    }
+
+}
+
+
+
+@media (max-width: 768px) {
+    .form-auth {
+        gap: 10%;
+    }
+
+    .form-auth>img {
+        width: 96px;
+        height: 93px;
+    }
+
+    .form-auth__link {
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .form__error {
+        font-size: 16px;
+    }
+}

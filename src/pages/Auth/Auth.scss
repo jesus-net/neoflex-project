@@ -1,6 +1,6 @@
 @import '@assets/scss/global.scss';
 
-.login {
+.auth {
     flex: 1 1 auto;
     height: 80%;
 
@@ -70,11 +70,11 @@
 
 
 @media (max-width: 768px) {
-    .login {
+    .auth {
         flex-direction: column;
         align-items: center;
         
-        .login__block {
+        .auth__block {
             width: 100%;
             gap: 72px;
             padding: 47px 15px 0px 15px;
@@ -86,7 +86,7 @@
             }
         }
 
-        .login__overlay {
+        .auth__overlay {
             display: none;
         }
     }
