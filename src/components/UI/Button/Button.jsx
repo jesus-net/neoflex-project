@@ -1,16 +1,16 @@
 import "@UI/Button/Button.scss";
 import iconPlus from "@img/icon-plus.svg";
-const Button = ({ type, value, disabled, onClick }) => {
+
+const Button = ({ type, value, onClick }) => {
   switch (type) {
     case "submit":
       return (
         <button
-          className="button submit"
+          className="button submit "
           type="submit"
-          disabled={disabled}
           onClick={(e) => {
-            onClick();
             e.preventDefault();
+            onClick();
           }}
         >
           {value || "Create"}
@@ -18,14 +18,14 @@ const Button = ({ type, value, disabled, onClick }) => {
       );
     case "plus":
       return (
-        <button className="button plus" disabled={disabled} type="submit">
+        <button className="button plus" type="submit">
           <img src={iconPlus} alt="plus" />
           {value || "Create claim"}
         </button>
       );
     case "reset":
       return (
-        <button className="button reset" disabled={disabled} type="reset">
+        <button className="button reset" type="reset">
           {value || "Decline"}
         </button>
       );
