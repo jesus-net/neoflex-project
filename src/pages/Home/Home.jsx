@@ -1,8 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import "@pages/Home/Home.scss";
 import Button from "@UI/Button/Button";
-import Table from "@components/Table/Table";
+import ClaimList from "@components/Claim-list/Claim-list";
 import Pagination from "@components/Pagination/Pagination";
 
 const Home = ({onClickMain}) => {
@@ -16,7 +16,7 @@ const Home = ({onClickMain}) => {
             <Button type="plus" value="Create claim" />
           </div>
           </Link>
-          <Table />
+          <ClaimList />
           <Pagination/>
         </div>
       </main>
