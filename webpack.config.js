@@ -108,7 +108,8 @@ module.exports = {
             '@components': path.resolve(__dirname, './src/components'),
             '@UI': path.resolve(__dirname, './src/components/UI'),
             '@Form': path.resolve(__dirname, './src/components/Form'),
-            '@pages': path.resolve(__dirname, './src/pages')
+            '@pages': path.resolve(__dirname, './src/pages'),
+            '@store': path.resolve(__dirname, './src/store')
         },
     }
 }
