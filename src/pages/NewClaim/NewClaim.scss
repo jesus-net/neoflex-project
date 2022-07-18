@@ -1,0 +1,29 @@
+@import '@assets/scss/global.scss';
+
+
+.new-claim {
+    overflow-y: auto;
+
+    &::-webkit-scrollbar-thumb {
+        background: $green50;
+    }
+
+    &::-webkit-scrollbar {
+        background: #FFFFFF;
+        width: 8px;
+    }
+
+    &__container {
+        padding: 56px 0 0px 64px;
+    }
+}
+
+@media (max-width: 768px) {
+    .new-claim {
+        height: 100vh;
+
+        .new-claim__container {
+            padding: 90px 16px 0px 16px;
+        }
+    }
+}
