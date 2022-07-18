@@ -1,28 +1,26 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import "@Form/Form.scss";
-
 import logoCompany from "@img/logo-company.svg";
-
 import Button from "@UI/Button/Button";
 import Input from "@UI/Input/Input";
 import Checkbox from "@UI/Checkbox/Checkbox";
 import useInput from "@Form/FormValidation.jsx";
+import { setUser, setToken } from "@store/userSlice";
 
-import { Link } from "react-router-dom";
+const FormAuth = ({ handleClick }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-
-const FormAuth = ({ type, clickLink }) => {
-  const fullName = useInput("", {
-    minLength: 4,
-    maxLength: 40,
-    isFullName: true,
-    isEmpty: "full name",
-  });
+  const API = useSelector((state) => state.user.API);
+  const loggedIn = useSelector((state) => state.user.loggedIn);
+  const [messageForm, setMessageForm] = useState("");
 
   const email = useInput("", {
-    isEmail: true, 
-    isEmpty: "e-mail" 
+    isEmail: true,
+    isEmpty: "e-mail",
   });
   const password = useInput("", {
     minLength: 6,
@@ -30,33 +28,33 @@ const FormAuth = ({ type, clickLink }) => {
     isEmpty: "password",
   });
 
-  const [isWrong, setWrong] = useState(false);
-
+  function authUser() {
+    if (!email.isValid || !password.isValid) {
+      dispatch(setUser(false));
+      setMessageForm("Please enter correct data");
+    } else {
+      API().post("auth/login", {
+        email: email.value,
+        password: password.value,
+      })
+        .then((obj) => {
+          dispatch(setUser(true));
+          dispatch(setToken({token: obj.data.token, fullName:obj.data.fullName}));
+          setMessageForm("");
+          if (location.state?.from) {
+            navigate(location.state.from);
+          } else navigate("/home");
+        })
+        .catch((err) => {
+          dispatch(setUser("incorrect"));
+          setMessageForm(String(err.response.data.message));
+        });
+    }
+  }
   return (
-    <form className="form form-auth" action="#">
-
+    <form className="form form-auth">
       <img src={logoCompany} alt="logo company"></img>
       <div className="form-auth__content">
-        {type === "reg" ? (
-          <div className="form__input">
-            <Input
-              type="textfield"
-              label="full name"
-              placeholder="Type your full name"
-              value={fullName.value}
-              maxLength={fullName.maxLength}
-              onChange={fullName.onChange}
-              onBlur={fullName.onBlur}
-            />
-            {fullName.isDirty &&
-              (fullName.isEmpty ||
-                fullName.minLengthErr ||
-                fullName.maxLengthErr ||
-                fullName.fullNameErr) && (
-                <span className={fullName.maxLengthErr ? "form__error--warning" : "form__error"}>{fullName.textErr}</span>
-              )}
-          </div>
-        ) : null}
         <div className="form__input">
           <Input
             type="email"
@@ -65,10 +63,9 @@ const FormAuth = ({ type, clickLink }) => {
             onChange={email.onChange}
             onBlur={email.onBlur}
           />
-          {email.isDirty &&
-            (email.isEmpty || email.emailErr) && (
-              <span className="form__error">{email.textErr}</span>
-            )}
+          {email.isDirty && (email.isEmpty || email.emailErr) && (
+            <span className="form__error">{email.textErr}</span>
+          )}
         </div>
         <div className="form__input">
           <Input
@@ -83,27 +80,32 @@ const FormAuth = ({ type, clickLink }) => {
             (password.isEmpty ||
               password.minLengthErr ||
               password.maxLengthErr) && (
-              <span className={password.maxLengthErr ? "form__error--warning" : "form__error"}>{password.textErr}</span>
+              <span
+                className={
+                  password.maxLengthErr ? "form__error--warning" : "form__error"
+                }
+              >
+                {password.textErr}
+              </span>
             )}
         </div>
-
-        {type === "reg" ? null : <Checkbox name="save_authorization" value=""></Checkbox>}
-        {type === "reg" ? (
-          <Button type="submit" value="Create Account" />
-        ) : (
-          <Button
-            type="submit"
-            value="Login"
-            onClick={() => setWrong(!email.isValid || !password.isValid)}
-          />
-        )}
+        <Checkbox name="save_authorization" value=""></Checkbox>
+        <div
+          className={
+            loggedIn === "incorrect" ? "form__button--warning" : "form__button"
+          }
+        >
+          <Button type="submit" value="Login" onClick={authUser} />
+        </div>
         <p className="form-auth__link">
-          {type === "reg" ? "Have an account? " : "Not a member? "}
-          <a href="#" onClick={() => clickLink()}>
-            Request {type === "reg" ? "authorization" : "registration"}
+          Not a member?{" "}
+          <a href="#" onClick={() => handleClick()}>
+            Request registration.
           </a>
         </p>
-        {isWrong && <span className="form__error">Data not correct</span>}
+        {(loggedIn === "incorrect" || !loggedIn) && (
+          <span className="form__error">{messageForm}</span>
+        )}
       </div>
     </form>
   );
