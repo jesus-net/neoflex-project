@@ -2,10 +2,9 @@ import React, { useState } from "react";
 
 import "@pages/Auth/Auth.scss";
 
-import poster from "@img/poster-home-copy.png";
+import poster from "@img/poster-home.png";
 import FormAuth from "@Form/FormAuth";
-
-import axios from "axios";
+import FormReg from "@Form/FormReg";
 
 const Auth = () => {
   const [stateForm, setStateForm] = useState({
@@ -35,10 +34,10 @@ const Auth = () => {
           <img src={poster} alt="auth poster"></img>
         </figure>
         <section className={"auth__block " + stateForm.reg}>
-          <FormAuth type="reg" clickLink={handleOverlay} />
+          <FormReg handleClick={handleOverlay} />
         </section>
         <section className={"auth__block " + stateForm.auth}>
-          <FormAuth type="auth" clickLink={handleOverlay} />
+          <FormAuth handleClick={handleOverlay} />
         </section>
       </div>
     </main>
@@ -46,10 +45,3 @@ const Auth = () => {
 };
 
 export default Auth;
-
-/* let DB = axios.create({
-  baseURL: 'http://localhost:3001',
-  headers: {Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYzFlY2U5ZDg1OGE1ZDI0NDYxM2I2NCIsImVtYWlsIjoidXNlcjExMUBtYWlsLnJ1IiwiaWF0IjoxNjU2ODc2MjY1LCJleHAiOjE2NTY5NjI2NjV9.ibt0FDMa-KlZkL_NthxDydBCmsEuqSjtsCRYhJB4htA`}
-});
-
-DB.get('/user').then(res => console.log(res.data.users)); */
