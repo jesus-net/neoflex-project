@@ -10,8 +10,10 @@ import charts from "@img/icon-charts.svg";
 import currency from "@img/icon-currency.svg";
 import base from "@img/icon-base.svg";
 import locations from "@img/icon-locations.svg";
-
-const Navbar = ({ isActive }) => {
+import {useSelector} from "react-redux";
+import {Link} from "react-router-dom";
+const Navbar = () => {
+  const isActive = useSelector(state => state.home.navbar);
   const icons = [
     { id: nanoid(), img: home, text: "home" },
     { id: nanoid(), img: services, text: "services" },
@@ -26,9 +28,9 @@ const Navbar = ({ isActive }) => {
     <div className={isActive ? "navbar navbar--active" : "navbar"}>
       <div className="navbar__container">
         <nav className="navbar__nav">
-          <a href="#" className="navbar__logo">
-            <img src={logoCompany} alt="logo" />
-          </a>
+        <Link to="/home" className="navbar__logo">
+        <img src={logoCompany} alt="logo" />
+        </Link>
           <ul className="navbar__list">
             {icons.map((item) =>
               item.text === "home" ? (
