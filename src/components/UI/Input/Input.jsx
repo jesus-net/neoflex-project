@@ -6,6 +6,8 @@ import iconEmail from "@img/icon-email.svg";
 import iconPassword from "@img/icon-password.svg";
 import iconSearch from "@img/icon-search.svg";
 import iconDropdown from "@img/icon-dropdown.svg";
+import { nanoid } from "nanoid";
+
 
 const Input = ({
   type,
@@ -38,6 +40,7 @@ const Input = ({
             name={type}
             maxLength={maxLength}
             placeholder={placeholder || "Type your e-mail"}
+            autoComplete="on"
             onChange={(e) => onChange(e)}
             onBlur={(e) => onBlur(e)}
           />
@@ -55,6 +58,7 @@ const Input = ({
             name={type}
             maxLength={maxLength}
             placeholder={placeholder || "Type your password"}
+            autoComplete="on"
             onChange={(e) => onChange(e)}
             onBlur={(e) => onBlur(e)}
           />
@@ -71,6 +75,7 @@ const Input = ({
             name={label}
             maxLength={maxLength}
             placeholder={placeholder || "Type claim title"}
+            autoComplete="on"
             onChange={(e) => onChange(e)}
             onBlur={(e) => onBlur(e)}
           />
@@ -85,7 +90,9 @@ const Input = ({
             type="text"
             name={type}
             maxLength={30}
+            onChange={(e) => onChange(e)}
             placeholder={placeholder || "Search"}
+            autoComplete="on"
           />
           <img src={iconSearch}></img>
         </>
@@ -120,7 +127,7 @@ const Input = ({
             }
           >
             {typeDropdown.map((item) => (
-              <span
+              <span key={nanoid()}
                 className={"dropdown___select " + item}
                 onClick={() => onSelect(item)}
               >
