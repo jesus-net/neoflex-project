@@ -12,7 +12,7 @@ const useInput = (initialValue, validations) => {
   };
   const onSelect = (item) => {
     setValue(item);
-  }
+  };
   return {
     value,
     onChange,
@@ -32,7 +32,7 @@ const useValidation = (value, validations) => {
   const [fullNameErr, setFullNameErr] = useState(false);
   const [isValid, setValid] = useState(false);
   const maxLength = validations.maxLength;
-  
+
   useEffect(() => {
     for (const validation in validations) {
       switch (validation) {
@@ -84,10 +84,10 @@ const useValidation = (value, validations) => {
 
   useEffect(
     () =>
-      isEmpty || minLengthErr || maxLengthErr || emailErr
+      isEmpty || minLengthErr || maxLengthErr || emailErr || fullNameErr
         ? setValid(false)
         : setValid(true),
-    [isEmpty, minLengthErr, maxLengthErr, emailErr]
+    [isEmpty, minLengthErr, maxLengthErr, emailErr, fullNameErr]
   );
   return {
     isEmpty,
