@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import "@Form/Form.scss";
+import "@components/Form/Form.scss";
 import logoCompany from "@img/logo-company.svg";
 import Button from "@UI/Button/Button";
 import Input from "@UI/Input/Input";
-import useInput from "@Form/FormValidation.jsx";
+import useInput from "@components/Form/FormValidation.jsx";
 
 import { useSelector } from "react-redux";
 
 const FormReg = ({ handleClick }) => {
-  const [signIn, setSignIn] = useState(true);
-  const [messageForm, setMessageForm] = useState("");
+
   const API = useSelector((state) => state.user.API);
+  const [signIn, setSignIn] = useState(false);
+  const [messageForm, setMessageForm] = useState("");
 
   const fullName = useInput("", {
     minLength: 4,
@@ -31,24 +32,25 @@ const FormReg = ({ handleClick }) => {
 
   const createUser = () => {
     if (!fullName.isValid || !email.isValid || !password.isValid) {
-      setSignIn(true);
+      setSignIn(false);
       setMessageForm("Please enter correct data");
     } else {
-      API.post("auth/registration", {
+      API().post("auth/registration", {
         fullName: fullName.value,
         email: email.value,
         password: password.value,
       })
         .then(() => {
-          setSignIn(false);
+          setSignIn(true);
           setMessageForm("User successfully registered");
         })
         .catch((err) => {
-          setSignIn("incorrect");
+          setSignIn(null);
           setMessageForm(String(err.response.data.message));
         });
     }
   };
+  console.log(signIn);
   return (
     <form className="form form-auth">
       <img src={logoCompany} alt="logo company"></img>
@@ -113,7 +115,7 @@ const FormReg = ({ handleClick }) => {
         </div>
         <div
           className={
-            signIn === "incorrect" ? "form__button--warning" : "form__button"
+            signIn === null ? "form__button--warning" : "form__button"
           }
         >
           <Button type="submit" value="Create Account" onClick={createUser} />
@@ -125,7 +127,7 @@ const FormReg = ({ handleClick }) => {
           </a>
         </p>
         {
-          <span className={signIn ? "form__error" : "form__success"}>
+          <span className={!signIn ? "form__error" : "form__success"}>
             {messageForm}
           </span>
         }

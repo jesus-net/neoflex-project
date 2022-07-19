@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-import "@Form/Form.scss";
+import "@components/Form/Form.scss";
 
 import Input from "@UI/Input/Input";
 import Button from "@UI/Button/Button";
-import useInput from "@Form/FormValidation.jsx";
+import useInput from "@components/Form/FormValidation.jsx";
 
 
 const FormClaim = () => {

@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import "@Form/Form.scss";
+import "@components/Form/Form.scss";
 import logoCompany from "@img/logo-company.svg";
 import Button from "@UI/Button/Button";
 import Input from "@UI/Input/Input";
 import Checkbox from "@UI/Checkbox/Checkbox";
-import useInput from "@Form/FormValidation.jsx";
-import { setUser, setToken } from "@store/userSlice";
+import useInput from "@components/Form/FormValidation.jsx";
+import { setLocalStorage } from "@slice/userSlice";
 
 const FormAuth = ({ handleClick }) => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   const API = useSelector((state) => state.user.API);
-  const loggedIn = useSelector((state) => state.user.loggedIn);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [messageForm, setMessageForm] = useState("");
 
   const email = useInput("", {
@@ -30,23 +30,26 @@ const FormAuth = ({ handleClick }) => {
 
   function authUser() {
     if (!email.isValid || !password.isValid) {
-      dispatch(setUser(false));
+      setLoggedIn(false);
       setMessageForm("Please enter correct data");
     } else {
-      API().post("auth/login", {
-        email: email.value,
-        password: password.value,
-      })
+      API()
+        .post("auth/login", {
+          email: email.value,
+          password: password.value,
+        })
         .then((obj) => {
-          dispatch(setUser(true));
-          dispatch(setToken({token: obj.data.token, fullName:obj.data.fullName}));
+          setLoggedIn(true);
           setMessageForm("");
+          dispatch(
+            setLocalStorage({ token: obj.data.token, fullName: obj.data.fullName, role: obj.data.slug})
+          );
           if (location.state?.from) {
             navigate(location.state.from);
           } else navigate("/home");
         })
         .catch((err) => {
-          dispatch(setUser("incorrect"));
+          setLoggedIn(null);
           setMessageForm(String(err.response.data.message));
         });
     }
@@ -92,7 +95,7 @@ const FormAuth = ({ handleClick }) => {
         <Checkbox name="save_authorization" value=""></Checkbox>
         <div
           className={
-            loggedIn === "incorrect" ? "form__button--warning" : "form__button"
+            loggedIn === null ? "form__button--warning" : "form__button"
           }
         >
           <Button type="submit" value="Login" onClick={authUser} />
@@ -103,7 +106,7 @@ const FormAuth = ({ handleClick }) => {
             Request registration.
           </a>
         </p>
-        {(loggedIn === "incorrect" || !loggedIn) && (
+        {(loggedIn === null || !loggedIn) && (
           <span className="form__error">{messageForm}</span>
         )}
       </div>

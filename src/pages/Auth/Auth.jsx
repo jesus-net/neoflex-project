@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import "@pages/Auth/Auth.scss";
 
 import poster from "@img/poster-home.png";
-import FormAuth from "@Form/FormAuth";
-import FormReg from "@Form/FormReg";
+import FormAuth from "@components/Form/FormAuth";
+import FormReg from "@components/Form/FormReg";
 
 const Auth = () => {
   const [stateForm, setStateForm] = useState({
