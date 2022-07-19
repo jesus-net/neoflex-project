@@ -24,7 +24,6 @@ module.exports = {
             filename: mode === 'production' ? '[name].[contenthash].css' : '[name].css'
         }),
         new HtmlWebpackPlugin({
-            title: 'React && Webpack',
             template: './index.html',
             favicon: './assets/favicon/favicon.ico'
         }),
@@ -107,9 +106,11 @@ module.exports = {
             '@img': path.resolve(__dirname, './src/assets/img'),
             '@components': path.resolve(__dirname, './src/components'),
             '@UI': path.resolve(__dirname, './src/components/UI'),
-            '@Form': path.resolve(__dirname, './src/components/Form'),
+            '@action': path.resolve(__dirname, './src/store/action'),
+            '@slice': path.resolve(__dirname, './src/store/slice'),
             '@pages': path.resolve(__dirname, './src/pages'),
-            '@store': path.resolve(__dirname, './src/store')
+            '@store': path.resolve(__dirname, './src/store'),
+            '@router': path.resolve(__dirname, './src/router')
         },
     }
 }
