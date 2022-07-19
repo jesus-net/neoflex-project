@@ -1,60 +1,43 @@
 import "@components/Pagination/Pagination.scss";
-import iconPrev from "@img/icon-prev-pagination.svg";
-import iconNext from "@img/icon-next-pagination.svg";
-const Pagination = () => {
+import {useSelector, useDispatch} from "react-redux";
+import {setCurrentPage, setStartCount} from "@slice/homeSlice";
+import { Pagination, PaginationItem } from "@mui/material";
+const PaginationList = () => {
+  const dispatch = useDispatch();
+  const currentPage = useSelector((state) => state.home.currentPage);
+
+  const limitCount = useSelector((state) => state.home.limitCount);
+  const totalCount = useSelector((state) => state.home.totalCount);
+  const pagesCount = Math.ceil(totalCount / limitCount);
   return (
     <div className="pagination">
-      <ul className="pagination__list">
-        <li className="pagination__item">
-          <a href="#" className="pagination__link pagination__link--prev">
-            <img src={iconPrev} alt="icon prev" />
-          </a>
-        </li>
-        <li className="pagination__item">
-          <a href="#" className="pagination__link">
-            1
-          </a>
-        </li>
-        <li className="pagination__item pagination__item--hidden"></li>
-        <li className="pagination__item">
-          <a href="#" className="pagination__link">
-            4
-          </a>
-        </li>
-        <li className="pagination__item">
-          <a href="#" className="pagination__link">
-            5
-          </a>
-        </li>
-        <li className="pagination__item pagination__item--active">
-          <a href="" className="pagination__link">
-            6
-          </a>
-        </li>
-        <li className="pagination__item">
-          <a href="#" className="pagination__link">
-            7
-          </a>
-        </li>
-        <li className="pagination__item">
-          <a href="#" className="pagination__link">
-            8
-          </a>
-        </li>
-        <li className="pagination__item pagination__item--hidden"></li>
-        <li className="pagination__item">
-          <a href="#" className="pagination__link">
-            50
-          </a>{" "}
-        </li>
-        <li className="pagination__item">
-          <a href="#" className="pagination__link pagination__link--next">
-            <img src={iconNext} alt="icon next" />
-          </a>
-        </li>
-      </ul>
+    <Pagination
+        count={pagesCount}
+        page={currentPage}
+        variant="outlined" 
+        shape="rounded"
+        onChange = {(_, num) => {
+          dispatch(setCurrentPage(num));
+          dispatch(setStartCount(num));
+        }}
+        renderItem={(item) => (
+          <PaginationItem
+            sx={{
+              marginRight: "10px",
+              fontFamily: "Inter-Regular",
+              fontSize: "14px",
+              lineHeight: "22px",
+              width: "32px",
+              height: "32px",
+              border: "1px solid $gray25",
+              borderRadius: "2px"
+            }}
+            {...item}
+          />
+        )}
+      />
     </div>
   );
 };
 
-export default Pagination;
+export default PaginationList;
