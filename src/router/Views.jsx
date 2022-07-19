@@ -45,7 +45,7 @@ const Views = () => {
             <div className="container">
               <Navbar />
               <Header />
-              <NewClaim onClickMain={() => setNavbarOpened(false)} />
+              <NewClaim />
             </div>
           }
         />

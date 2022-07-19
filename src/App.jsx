@@ -1,5 +1,5 @@
 import React from "react";
-import Views from "./Views";
+import Views from "@router/Views";
 
 
 const App = () => {
