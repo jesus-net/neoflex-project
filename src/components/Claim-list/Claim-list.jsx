@@ -9,11 +9,13 @@ const ClaimList = () => {
   const dispatch = useDispatch();
   const claims = useSelector((state) => state.home.claims);
   const isFetching = useSelector((state) => state.home.isFetching);
-
+  const startCount = useSelector((state) => state.home.startCount);
+  const currentPage = useSelector((state) => state.home.currentPage);
+  const limitCount = useSelector((state) => state.home.limitCount);
   useEffect(() => {
-    dispatch(getClaims());
-  }, []);
-  
+    dispatch(getClaims({current: startCount, limit: limitCount}));
+  }, [currentPage]);
+
   return (
     <div className="claims-list">
       <div className="claims-list__filters">
