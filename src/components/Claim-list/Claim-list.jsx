@@ -3,7 +3,7 @@ import "@components/Claim-list/Claim-list.scss";
 
 import { useSelector, useDispatch } from "react-redux";
 import Claim from "@components/Claim-list/Claim/Claim";
-import { getClaims } from "@store/action.homeSlice";
+import { getClaims } from "@action/action.homeSlice";
 
 const ClaimList = () => {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const ClaimList = () => {
   useEffect(() => {
     dispatch(getClaims());
   }, []);
-
+  
   return (
     <div className="claims-list">
       <div className="claims-list__filters">
@@ -38,9 +38,11 @@ const ClaimList = () => {
           <Claim
             key={item["_id"]}
             title={item.title}
-            created={item.updatedAt}
+            created={item.updatedAt.slice(0, 10).split('-').reverse().join('/')}
             type={item.type ? item.type.name : null}
+            typeSlug={item.type ? item.type.slug : null}
             status={item.status ? item.status.name : null}
+            statusSlug={item.status ? item.status.slug : null}
           />
         ))
       ) : (
