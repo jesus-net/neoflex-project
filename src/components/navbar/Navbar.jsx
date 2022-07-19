@@ -1,7 +1,5 @@
 import { nanoid } from "nanoid";
-
 import "@components/Navbar/Navbar.scss";
-
 import logoCompany from "@img/logo-company-mini.svg";
 import home from "@img/icon-home.svg";
 import services from "@img/icon-services.svg";

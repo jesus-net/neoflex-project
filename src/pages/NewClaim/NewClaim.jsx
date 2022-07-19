@@ -1,11 +1,11 @@
 import "@pages/NewClaim/NewClaim.scss";
 
-import  FormClaim from "@Form/FormClaim";
+import  FormClaim from "@components/Form/FormClaim";
 
-const NewClaim = ({onClickMain}) => {
+const NewClaim = () => {
    
     return (
-         <main className="new-claim" onClick={onClickMain}>
+         <main className="new-claim">
          <div className="new-claim__container">
             <h1 className="title">Creating new claim</h1>
             <FormClaim/>
