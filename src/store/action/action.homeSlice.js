@@ -1,18 +1,18 @@
 import axios from "axios";
-import { setClaims, setIsFetching } from "@slice/homeSlice.js";
+import { setClaims, setIsFetching, setTotalCount } from "@slice/homeSlice.js";
 
 
-export const getClaims = (search) => {
+export const getClaims = ({search = "", current, limit} = {}) => {
   let API = axios.create({
-  baseURL: "http://localhost:3001/",
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-  },
-});
-
+    baseURL: "http://localhost:3001/",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    },
+  });
   return async (dispatch) => {
     dispatch(setIsFetching(true));
-    const response = await API.get(`/claim?limit=15`);
+    const response = await API.get(`/claim?search=${search}&offset=${current}&limit=${limit}`);
     dispatch(setClaims(response.data.claims));
+    dispatch(setTotalCount(response.data.totalItems));
   };
 };
