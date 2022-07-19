@@ -1,16 +1,7 @@
 @import '@assets/scss/global.scss';
 
 .home {
-    overflow-y: auto;
-    
-    &::-webkit-scrollbar-thumb {
-        background: $green50;
-    }
-
-    &::-webkit-scrollbar {
-        background: #FFFFFF;
-        width: 8px;
-    }
+    overflow:hidden;
 
     &__container {
         padding: 58px 58px 0 56px;
@@ -21,7 +12,20 @@
         float: right;
     }
 }
+@media (max-height: 850px) {
 
+    .home {
+        overflow-y: scroll;
+        &::-webkit-scrollbar-thumb {
+            background: $green50;
+        }
+    
+        &::-webkit-scrollbar {
+            background: #FFFFFF;
+            width: 8px;
+        }
+    }
+}
 @media (max-width: 768px) {
     .home {
         height: 100vh;
