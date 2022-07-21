@@ -10,15 +10,12 @@ const useInput = (initialValue, validations) => {
   const onBlur = (e) => {
     setDirty(true);
   };
-  const onSelect = (item) => {
-    setValue(item);
-  };
+
   return {
     value,
     onChange,
     onBlur,
     isDirty,
-    onSelect,
     ...valid,
   };
 };
