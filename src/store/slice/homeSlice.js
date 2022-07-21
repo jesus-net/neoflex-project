@@ -10,6 +10,9 @@ const homeSlice = createSlice({
     limitCount: 10,
     totalCount: 0,
     currentPage: 1,
+    sort: "desc",
+    title: "",
+    overlay: false
   },
   reducers: {
     toggleNavbar(state, action) {
@@ -17,13 +20,13 @@ const homeSlice = createSlice({
     },
     setClaims(state, action) {
       state.isFetching = false;
-      state.claims = action.payload;
+      state.claims = action.payload.slice(0,10)
     },
     setIsFetching(state, action) {
       state.isFetching = action.payload;
     },
     setStartCount(state, action) {
-      state.startCount  = action.payload === 1 ?  action.payload : 1 + (action.payload - 1) * 10;
+      state.startCount  = action.payload === 1 ?  action.payload : (action.payload - 1) * 10;
     },
     setTotalCount(state, action) {
       state.totalCount = action.payload;
@@ -31,6 +34,13 @@ const homeSlice = createSlice({
     setCurrentPage(state, action) {
       state.currentPage = action.payload;
     },
+    setSortData(state, action) {
+      state.sort = state.sort === "asc" ? "desc" : "asc";
+      state.title = action.payload.title;
+    },
+    setOverlay(state, action) {
+      state.overlay = action.payload;
+    }
   },
 });
 
@@ -41,6 +51,8 @@ export const {
   setStartCount,
   setTotalCount,
   setCurrentPage,
+  setSortData,
+  setOverlay
 } = homeSlice.actions;
 
 export default homeSlice.reducer;
