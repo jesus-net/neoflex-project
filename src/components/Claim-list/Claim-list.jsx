@@ -39,6 +39,7 @@ const ClaimList = () => {
         claims.map((item) => (
           <Claim
             key={item["_id"]}
+            id={item["_id"]}
             title={item.title}
             created={item.updatedAt.slice(0, 10).split('-').reverse().join('/')}
             type={item.type ? item.type.name : null}
