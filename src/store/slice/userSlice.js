@@ -22,9 +22,9 @@ const userSlice = createSlice({
       state.fullName = action.payload.fullName;
       state.token = action.payload.token;
       state.role = action.payload.role;
-      localStorage.setItem("nickname", action.payload.fullName);
-      localStorage.setItem("accessToken", action.payload.token);
-      localStorage.setItem("role", action.payload.role);
+      localStorage.setItem("nickname", state.fullName);
+      localStorage.setItem("accessToken", state.token);
+      localStorage.setItem("role", state.role);
     },
     ClearLocalStorage(state, action) {
       state.fullName = action.payload.fullName;
