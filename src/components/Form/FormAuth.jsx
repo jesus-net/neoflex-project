@@ -42,7 +42,7 @@ const FormAuth = ({ handleClick }) => {
           setLoggedIn(true);
           setMessageForm("");
           dispatch(
-            setLocalStorage({ token: obj.data.token, fullName: obj.data.fullName, role: obj.data.slug})
+            setLocalStorage({ token: obj.data.token, fullName: obj.data.fullName, role: obj.data.role.slug})
           );
           if (location.state?.from) {
             navigate(location.state.from);
