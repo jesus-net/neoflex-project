@@ -89,7 +89,8 @@
     background: none;
     cursor: pointer;
     transition: 0.3s all;
-
+    font-family: "Inter-Regular";
+    font-size: 16px;
     &::after {
       content: "";
       bottom: 0;
@@ -183,8 +184,9 @@
       line-height: 36px;
       border: 1px solid $gray50;
       border-radius: 16px;
-      color: $gray75;
-
+      a {
+        color: $gray75;
+      }
       &::after {
         content: none;
       }
