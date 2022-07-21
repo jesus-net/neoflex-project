@@ -9,9 +9,10 @@ export const getClaims = ({search = "", current, limit} = {}) => {
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
     },
   });
+  limit = current === 1 ? "" : limit;
   return async (dispatch) => {
     dispatch(setIsFetching(true));
-    const response = await API.get(`/claim?search=${search}&offset=${current}&limit=${limit}`);
+    const response = await API.get(`claim?search=${search}&offset=${current}&limit=${limit}`);
     dispatch(setClaims(response.data.claims));
     dispatch(setTotalCount(response.data.totalItems));
   };
