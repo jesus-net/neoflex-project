@@ -18,6 +18,9 @@
     font-size: 18px;
     line-height: 32px;
 
+      &:disabled {
+          color: $gray50;
+    }
     &::placeholder {
       font-family: "Inter-Regular";
       font-size: 18px;
@@ -38,6 +41,11 @@
 }
 
 .dropdown {
+  appearance: none;
+ 
+  &--active {
+    padding-left: 42px;
+  }
   .type {
     bottom: 16px;
     left: 16px;
@@ -47,52 +55,31 @@
     border-radius: 50%;
     z-index: 1;
   }
-
   &__vector {
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.25s ease-in-out;
     pointer-events: none;
     &--active {
       transform: rotate(180deg);
     }
   }
-
-  &__menu {
-    position: absolute;
-    top: 65px;
-    display: none;
-    flex-direction: column;
-    gap: 25px;
-    width: 100%;
-    border-bottom-left-radius: 16px;
-    border-bottom-right-radius: 16px;
-    padding: 20px 16px;
-    font-size: 18px;
-    background: $gray25;
-    z-index: 1;
-
-    &--active {
-      display: flex;
-    }
+  .hard::before,
+  .hard.type {
+    background: $green50;
   }
 
-  &___select {
-    cursor: pointer;
-    position: relative;
-    padding-left: 26px;
-
-    &::before {
-      content: "";
-      top: 2px;
-      left: 0;
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-    }
+  .soft::before,
+  .soft.type {
+    background: $pink;
   }
 
-  .input__field {
-    cursor: pointer;
+  .troublesh::before,
+  .troublesh.type {
+    background: $blue100;
+  }
+
+  .net::before,
+  .net.type {
+    background: $yellow100;
   }
 }
 
@@ -105,31 +92,6 @@
       color: $gray50;
     }
   }
-}
-.textarea {
-  .input__field {
-    resize: none;
-    overflow: hidden;
-  }
-}
-.Hardware::before,
-.Hardware.type {
-  background: $green50;
-}
-
-.Software::before,
-.Software.type {
-  background: $pink;
-}
-
-.Troubleshooting::before,
-.Troubleshooting.type {
-  background: $blue100;
-}
-
-.Networking::before,
-.Networking.type {
-  background: $yellow100;
 }
 
 @media (max-width: 768px) {
