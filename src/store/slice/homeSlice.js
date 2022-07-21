@@ -4,6 +4,7 @@ const homeSlice = createSlice({
   name: "home",
   initialState: {
     navbar: false,
+    claims: [],
     isFetching: true,
     startCount: 1,
     limitCount: 10,
