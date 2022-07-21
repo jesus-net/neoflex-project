@@ -24,8 +24,8 @@ module.exports = {
             filename: mode === 'production' ? '[name].[contenthash].css' : '[name].css'
         }),
         new HtmlWebpackPlugin({
-            template: './index.html',
-            favicon: './assets/favicon/favicon.ico'
+            template: './public/index.html',
+            favicon: './public/favicon.ico'
         }),
         new CopyWebpackPlugin({
             patterns: [{
