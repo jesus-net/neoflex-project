@@ -45,7 +45,14 @@
     &__buttons {
       display: flex;
       gap: 24px;
-      width: 188px;
+      width: 100%;
+      padding-bottom: 20px;
+      &.big {
+        max-width: 298px;
+      }
+      &.small {
+        max-width: 188px;
+      }
     }
   }
 
@@ -68,16 +75,16 @@
     &--warning {
       button.submit {
         background-color: $red;
-      &:hover {
-        background-color: $red;
+        &:hover {
+          background-color: $red;
+        }
+        &:active {
+          padding: 0px var(--padding-button);
+          animation-fill-mode: forwards;
+          animation-name: error;
+          animation-duration: 0.2s;
+        }
       }
-      &:active {
-        padding: 0px var(--padding-button);
-        animation-fill-mode: forwards;
-        animation-name: error;
-        animation-duration: 0.2s;
-      }
-    }
     }
   }
 }
@@ -112,12 +119,19 @@
     padding-right: var(--margin-button);
   }
 }
-
+@media (max-width: 1024px) {
+  .form-auth > img {
+    width: 104px;
+    height: 101px;
+  }
+}
 @media (max-width: 768px) {
   .form-auth {
     gap: 10%;
   }
-
+  .form-claim {
+    margin-top: 24px;
+  }
   .form-auth > img {
     width: 96px;
     height: 93px;
@@ -128,7 +142,8 @@
     line-height: 15px;
   }
 
-  .form__error, .form__success {
+  .form__error,
+  .form__success {
     font-size: 16px;
   }
 }

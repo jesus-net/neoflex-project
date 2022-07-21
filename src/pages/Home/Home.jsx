@@ -1,16 +1,18 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import "@pages/Home/Home.scss";
-import Button from "@UI/Button/Button";
-import ClaimList from "@components/Claim-list/Claim-list";
-import PaginationList from "@components/Pagination/Pagination";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@UI/Button/Button";
+import { ClaimList } from "@components/ClaimList/ClaimList";
+import { PaginationList } from "@components/Pagination/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleNavbar } from "@slice/homeSlice";
+import logoCompany from "@img/logo-company-mini.svg";
 
-const Home = () => {
+export const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const role = useSelector((state) => state.user.role);
+  const overlay = useSelector((state) => state.home.overlay);
   const handleHome = () => dispatch(toggleNavbar(false));
   const navigatePosts = () => navigate("/post");
 
@@ -28,8 +30,12 @@ const Home = () => {
         <ClaimList />
         <PaginationList />
       </div>
+      <div className={overlay ? "overlay overlay--active" : "overlay"}>
+        <img src={logoCompany}></img>
+        <span className="overlay__message">
+          This feature is only available to the administrator :)
+        </span>
+      </div>
     </main>
   );
 };
-
-export default Home;

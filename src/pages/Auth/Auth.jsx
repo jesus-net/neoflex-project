@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
 import "@pages/Auth/Auth.scss";
-
 import poster from "@img/poster-home.png";
-import FormAuth from "@components/Form/FormAuth";
-import FormReg from "@components/Form/FormReg";
+import {FormAuth} from "@components/Form/FormAuth";
+import {FormReg} from "@components/Form/FormReg";
+import {Footer} from "@components/Footer/Footer";
 
-const Auth = () => {
+export const Auth = () => {
   const [stateForm, setStateForm] = useState({
     overlay: "",
     auth: "",
@@ -28,20 +28,22 @@ const Auth = () => {
   };
 
   return (
-    <main className="auth">
-      <div className="auth__container">
-        <figure className={"auth__overlay " + stateForm.overlay}>
-          <img src={poster} alt="auth poster"></img>
-        </figure>
-        <section className={"auth__block " + stateForm.reg}>
-          <FormReg handleClick={handleOverlay} />
-        </section>
-        <section className={"auth__block " + stateForm.auth}>
-          <FormAuth handleClick={handleOverlay} />
-        </section>
-      </div>
-    </main>
+    <>
+      <main className="auth">
+        <div className="auth__container">
+          <figure className={"auth__overlay " + stateForm.overlay}>
+            <img src={poster} alt="auth poster"></img>
+          </figure>
+          <section className={"auth__block " + stateForm.reg}>
+            <FormReg handleClick={handleOverlay} />
+          </section>
+          <section className={"auth__block " + stateForm.auth}>
+            <FormAuth handleClick={handleOverlay} />
+          </section>
+        </div>
+      </main>
+      <Footer />
+    </>
   );
 };
 
-export default Auth;

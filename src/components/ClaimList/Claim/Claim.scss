@@ -1,0 +1,214 @@
+@import "@assets/scss/global.scss";
+.claim {
+  display: grid;
+  grid-template-columns: 1.5fr repeat(4, 1fr);
+  border-bottom: 1px solid $gray50;
+  padding-left: 24px;
+  justify-content: flex-start;
+  align-items: center;
+
+  &__text,
+  &__title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__text {
+    position: relative;
+    width: 100%;
+  }
+
+  &__type {
+    display: flex;
+    align-items: center;
+    .claim__text {
+      padding-left: 32px;
+      &::before {
+        content: "";
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        left: 0;
+        top: 2px;
+        border-radius: 50%;
+        z-index: 1;
+      }
+      &.hard::before {
+        background: $green50;
+      }
+
+      &.soft::before {
+        background: $pink;
+      }
+
+      &.troublesh::before {
+        background: $blue100;
+      }
+
+      &.net::before {
+        background: $yellow100;
+      }
+    }
+  }
+
+  &__status {
+    width: 124px;
+    height: 32px;
+    border-radius: 16px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: $white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 16px;
+    font-family: "Inter-ExtraBold";
+    font-size: 12px;
+    line-height: 15px;
+    &.decl {
+      background-color: $purple50;
+    }
+    &.new {
+      background: $blue100;
+    }
+    &.done {
+      background: $green50;
+    }
+    &.in-progress {
+      background: $yellow100;
+    }
+  }
+
+  &__button {
+    position: relative;
+    width: 57px;
+    height: 20px;
+    color: $blue75;
+    cursor: pointer;
+    background: inherit;
+    transition: 0.3s all;
+    font-family: "Inter-Regular";
+    font-size: 16px;
+    line-height: 20px;
+    text-decoration: underline;
+  }
+
+  &__title {
+    width: 95%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__filter {
+    display: none;
+  }
+}
+
+@media (max-width: 1440px) {
+  .claim {
+    grid-template-columns: 1.5fr repeat(4, 1fr);
+    column-gap: 20px;
+
+    &__text,
+    &__title {
+      font-size: 13px;
+    }
+
+    &__status {
+      font-size: 10px;
+      width: 105px;
+      height: 25px;
+    }
+  }
+}
+
+@media (max-width: 1240px) {
+  .claim {
+    margin-bottom: 24px;
+    background: $white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 240px;
+    padding-left: 0;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border: none;
+
+    &__title {
+      padding: 6px 0 6px 16px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      height: 32px;
+      background: $green50;
+      margin-bottom: 8px;
+      color: $white;
+      font-family: "Inter-Bold";
+    }
+    &__type {
+      .claim__text {
+        padding-left: 24px;
+      }
+    }
+    &__button {
+      margin: 12px 0 0 15px;
+      padding: 8px 8px;
+      width: 84px;
+      height: 52px;
+      letter-spacing: 0.25px;
+      font-family: "Inter-Bold";
+      font-size: 18px;
+      line-height: 36px;
+      border: 1px solid $gray50;
+      border-radius: 16px;
+      color: $gray50;
+      text-decoration: none;
+      &:hover {
+        border: 1px solid $gray75;
+        color: $gray75;
+      }
+      &:active {
+        border: 1px solid $gray100;
+        color: $gray100;
+      }
+    }
+
+    &__text {
+      line-height: 20px;
+      font-size: 16px;
+    }
+
+    &__filter {
+      display: block;
+      line-height: 20px;
+      letter-spacing: 0.25px;
+      font-family: "Inter-Bold";
+    }
+
+    &__status {
+      width: 93px;
+      height: 24px;
+      font-size: 8px;
+      font-family: "Inter-Bold";
+    }
+
+    &__block {
+      padding: 0 16px;
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      margin-top: 16px;
+    }
+  }
+}
+@media (max-width: 375px) {
+  .claim__text {
+    font-size: 14px;
+  }
+}

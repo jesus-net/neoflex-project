@@ -1,18 +1,14 @@
 import "@UI/Button/Button.scss";
 import iconPlus from "@img/icon-plus.svg";
 
-const Button = ({ type, value, onClick, name }) => {
+export const Button = ({ type, value, ...props }) => {
   switch (type) {
     case "submit":
       return (
         <button
           className="button submit"
           type="submit"
-          name={name}
-          onClick={(e) => {
-            e.preventDefault();
-            onClick(e);
-          }}
+          {...props}
         >
           {value || "Create"}
         </button>
@@ -22,11 +18,7 @@ const Button = ({ type, value, onClick, name }) => {
         <button
           className="button plus"
           type="submit"
-          name={name}
-          onClick={(e) => {
-            e.preventDefault();
-            onClick(e);
-          }}
+          {...props}
         >
           <img src={iconPlus} alt="plus" />
           {value || "Create claim"}
@@ -37,11 +29,7 @@ const Button = ({ type, value, onClick, name }) => {
         <button
           className="button reset"
           type="submit"
-          name={name}
-          onClick={(e) => {
-            e.preventDefault();
-            onClick(e);
-          }}
+          {...props}
         >
           {value || "Decline"}
         </button>
@@ -51,15 +39,10 @@ const Button = ({ type, value, onClick, name }) => {
         <button
           type="submit"
           className="button cancel"
-          name={name}
-          onClick={(e) => {
-            e.preventDefault();
-            onClick(e)}}
+          {...props}
         >
           {value || "Cancel"}
         </button>
       );
   }
 };
-
-export default Button;

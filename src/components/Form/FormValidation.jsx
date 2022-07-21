@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-const useInput = (initialValue, validations) => {
+export const useInput = (initialValue, validations) => {
   const [value, setValue] = useState(initialValue);
   const [isDirty, setDirty] = useState(false);
   const valid = useValidation(value, validations);
@@ -97,5 +97,3 @@ const useValidation = (value, validations) => {
     maxLength,
   };
 };
-
-export default useInput;

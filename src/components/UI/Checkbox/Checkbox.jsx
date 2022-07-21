@@ -1,6 +1,6 @@
 import "@UI/Checkbox/Checkbox.scss";
 
-const Checkbox = ({ name, value, label}) => (
+export const Checkbox = ({ name, value, label}) => (
   <div className="checkbox">
     <label className="checkbox__label">
       <input
@@ -14,5 +14,3 @@ const Checkbox = ({ name, value, label}) => (
     </label>
   </div>
 );
-
-export default Checkbox;

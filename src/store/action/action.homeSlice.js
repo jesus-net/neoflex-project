@@ -1,8 +1,13 @@
 import axios from "axios";
 import { setClaims, setIsFetching, setTotalCount } from "@slice/homeSlice.js";
 
-
-export const getClaims = ({search = "", current, limit} = {}) => {
+export const getClaims = ({
+  search = "",
+  current,
+  limit,
+  column = "",
+  sort = "",
+} = {}) => {
   let API = axios.create({
     baseURL: "http://localhost:3001/",
     headers: {
@@ -10,9 +15,12 @@ export const getClaims = ({search = "", current, limit} = {}) => {
     },
   });
   limit = current === 1 ? "" : limit;
+
   return async (dispatch) => {
     dispatch(setIsFetching(true));
-    const response = await API.get(`claim?search=${search}&offset=${current}&limit=${limit}`);
+    const response = await API.get(
+      `claim?search=${search}&offset=${current}&limit=${limit}&column=${column}&sort=${sort}`
+    );
     dispatch(setClaims(response.data.claims));
     dispatch(setTotalCount(response.data.totalItems));
   };

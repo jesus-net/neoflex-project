@@ -5,3 +5,14 @@
     padding-bottom: 20px;
     float: right;
 }
+
+@media(max-width: 450px) {
+    .pagination {
+        width: 100%;
+        button {
+            width: 25px !important;
+            height: 25px !important;
+            margin-right: 2px;
+        }
+    }
+}

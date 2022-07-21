@@ -1,6 +1,5 @@
 @import "@assets/scss/global.scss";
 
-
 .button {
   display: flex;
   justify-content: center;
@@ -52,5 +51,15 @@
 @media (max-width: 768px) {
   .plus {
     font-size: 0;
+    width: 48px;
+    height: 48px;
+    &::before {
+      content: "+";
+      font-family: "Inter-Bold";
+      font-size: 18px;
+    }
+    img {
+      display: none;
+    }
   }
 }

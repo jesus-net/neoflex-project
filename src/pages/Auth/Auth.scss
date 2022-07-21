@@ -1,93 +1,89 @@
-@import '@assets/scss/global.scss';
+@import "@assets/scss/global.scss";
 
 .auth {
-    flex: 1 1 auto;
-    height: 80%;
+  flex: 1 1 auto;
+  height: 80%;
 
-    &__container {
-        position: relative;
-        display: flex;
-        justify-content: space-between;
-        height: 100%;
+  &__container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  &__overlay,
+  &__block {
+    padding: 0 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    overflow: auto;
+
+    &::-webkit-scrollbar-thumb {
+      background: $green50;
+      border-radius: 16px;
     }
 
-    &__overlay,
-    &__block {
-        padding: 0 24px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 50%;
-        overflow: auto;
-        
-        &::-webkit-scrollbar-thumb {
-            background: $green50;
-            border-radius: 16px;
-        }
+    &::-webkit-scrollbar {
+      background: $white;
+      width: 8px;
+    }
+  }
 
-        &::-webkit-scrollbar {
-            background: #FFFFFF;
-            width: 8px;
-        }
+  &__overlay {
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    padding: 0px 20px 20px;
+    background-color: $green25;
+    transition: left 1s ease-in-out;
+
+    &--active {
+      left: 50%;
     }
 
-    &__overlay {
-        position: absolute;
-        height: 100%;
-        width: 50%;
-        top: 0;
-        left: 0;
-        z-index: 100;
-        padding: 0px 20px 20px;
-        background-color: $green25;
-        transition: left 1s ease-in-out;
-
-        &--active {
-            left: 50%;
-        }
-
-        img {
-            object-fit: contain;
-            max-width: 699px;
-            width: 100%;
-            max-height: 658px;
-            height: 100%;
-        }
+    img {
+      object-fit: contain;
+      max-width: 699px;
+      width: 100%;
+      max-height: 658px;
+      height: 100%;
     }
+  }
 
-    &__block {
-        padding: 25px;
-        &--disabled {
-            transition-delay: 0.2s;
-            transition-duration: 0.1s;
-            visibility: hidden;
-        }
+  &__block {
+    padding: 25px;
+    &--disabled {
+      transition-delay: 0.2s;
+      transition-duration: 0.1s;
+      visibility: hidden;
     }
+  }
 }
 
-
-
-
-
 @media (max-width: 768px) {
-    .auth {
-        flex-direction: column;
-        align-items: center;
-        
-        .auth__block {
-            width: 100%;
-            gap: 72px;
-            padding: 47px 15px 0px 15px;
-            &--disabled {
-                position: absolute;
-                transition: 0s;
-                top: -1000;
-                left: -1000;
-            }
-        }
+  .auth {
+    flex-direction: column;
+    align-items: center;
 
-        .auth__overlay {
-            display: none;
-        }
+    .auth__block {
+      width: 100%;
+      gap: 72px;
+      padding: 47px 15px 0px 15px;
+      &--disabled {
+        position: absolute;
+        transition: 0s;
+        top: -1000;
+        left: -1000;
+      }
     }
+
+    .auth__overlay {
+      display: none;
+    }
+  }
 }

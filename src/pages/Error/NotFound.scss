@@ -1,24 +1,44 @@
-@import '@assets/scss/global.scss';
+@import "@assets/scss/global.scss";
 
 .error {
-    background: $green25;
+  background: $green25;
 
-    &__container {
-        display: flex;
-        height: 100vh;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        gap: 40px;
+  &__container {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+    padding: 40px;
+    overflow: auto;
+
+    &::-webkit-scrollbar-thumb {
+      background: $green50;
     }
 
-    &__number {
-        font-size: 60px;
-        font-family: Inter-ExtraBold;
+    &::-webkit-scrollbar {
+      background: $green25;
+      width: 8px;
     }
+    
+  }
+  &__poster {
+    img {
+        object-fit: contain;
+        max-width: 699px;
+        width: 100%;
+        max-height: 658px;
+        height: 100%;
+    }
+  }
+  &__number {
+    font-size: 60px;
+    font-family: Inter-ExtraBold;
+  }
 
-    &__text {
-        font-size: 24px;
-        text-transform: uppercase;
-    }
+  &__text {
+    font-size: 24px;
+    text-transform: uppercase;
+  }
 }

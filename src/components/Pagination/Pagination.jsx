@@ -2,7 +2,8 @@ import "@components/Pagination/Pagination.scss";
 import {useSelector, useDispatch} from "react-redux";
 import {setCurrentPage, setStartCount} from "@slice/homeSlice";
 import { Pagination, PaginationItem } from "@mui/material";
-const PaginationList = () => {
+
+export const PaginationList = () => {
   const dispatch = useDispatch();
   const currentPage = useSelector((state) => state.home.currentPage);
 
@@ -23,12 +24,12 @@ const PaginationList = () => {
         renderItem={(item) => (
           <PaginationItem
             sx={{
-              marginRight: "10px",
+              marginRight: "8px",
               fontFamily: "Inter-Regular",
               fontSize: "14px",
               lineHeight: "22px",
-              width: "32px",
-              height: "32px",
+              width: "30px",
+              height: "30px",
               border: "1px solid $gray25",
               borderRadius: "2px"
             }}
@@ -39,5 +40,3 @@ const PaginationList = () => {
     </div>
   );
 };
-
-export default PaginationList;

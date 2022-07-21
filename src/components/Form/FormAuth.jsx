@@ -1,18 +1,23 @@
-import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "@components/Form/Form.scss";
 import logoCompany from "@img/logo-company.svg";
-import Button from "@UI/Button/Button";
-import Input from "@UI/Input/Input";
-import Checkbox from "@UI/Checkbox/Checkbox";
-import useInput from "@components/Form/FormValidation.jsx";
+import { Button } from "@UI/Button/Button";
+import { Input } from "@UI/Input/Input";
+import { Checkbox } from "@UI/Checkbox/Checkbox";
+import { useInput } from "@components/Form/FormValidation.jsx";
 import { setLocalStorage } from "@slice/userSlice";
 
-const FormAuth = ({ handleClick }) => {
+export const FormAuth = ({ handleClick }) => {
+  const token = useSelector((state) => state.user.token);
   const navigate = useNavigate();
-  const location = useLocation();
   const dispatch = useDispatch();
+  useEffect(() => {
+    if (token) {
+      return navigate("/home");
+    }
+  }, [token]);
 
   const API = useSelector((state) => state.user.API);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -28,7 +33,8 @@ const FormAuth = ({ handleClick }) => {
     isEmpty: "password",
   });
 
-  function authUser() {
+  const authUser = (e) => {
+    e.preventDefault();
     if (!email.isValid || !password.isValid) {
       setLoggedIn(false);
       setMessageForm("Please enter correct data");
@@ -42,18 +48,20 @@ const FormAuth = ({ handleClick }) => {
           setLoggedIn(true);
           setMessageForm("");
           dispatch(
-            setLocalStorage({ token: obj.data.token, fullName: obj.data.fullName, role: obj.data.role.slug})
+            setLocalStorage({
+              token: obj.data.token,
+              fullName: obj.data.fullName,
+              role: obj.data.role.slug,
+            })
           );
-          if (location.state?.from) {
-            navigate(location.state.from);
-          } else navigate("/home");
+          navigate("/home");
         })
         .catch((err) => {
           setLoggedIn(null);
           setMessageForm(String(err.response.data.message));
         });
     }
-  }
+  };
   return (
     <form className="form form-auth">
       <img src={logoCompany} alt="logo company"></img>
@@ -113,5 +121,3 @@ const FormAuth = ({ handleClick }) => {
     </form>
   );
 };
-
-export default FormAuth;

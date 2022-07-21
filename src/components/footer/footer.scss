@@ -1,18 +1,17 @@
-@import '@assets/scss/global.scss';
+@import "@assets/scss/global.scss";
 
 .footer {
-    height: 97px;
-    background: $green50;
-    padding: 16px 30px;
-
+  height: 97px;
+  background: $green50;
+  padding: 16px 30px;
 }
 
 @media (max-width: 768px) {
-    .footer {
-        height: 64px;
+  .footer {
+    height: 64px;
 
-        img {
-            display: none;
-        }
+    img {
+      display: none;
     }
+  }
 }

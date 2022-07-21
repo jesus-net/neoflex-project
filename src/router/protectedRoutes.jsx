@@ -6,7 +6,7 @@ const useAuth = () => {
   return loggedIn;
 };
 
-const ProtectedRoutes = () => {
+export const ProtectedRoutes = () => {
   const location = useLocation();
   const isAuth = useAuth();
   return isAuth ? (
@@ -15,5 +15,3 @@ const ProtectedRoutes = () => {
     <Navigate to="/" replace state={{ from: location }} />
   );
 };
-
-export default ProtectedRoutes;

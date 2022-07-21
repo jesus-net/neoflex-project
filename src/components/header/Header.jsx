@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import "@components/Header/Header.scss";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ClearLocalStorage } from "@slice/userSlice";
-import { toggleNavbar} from "@slice/homeSlice";
+import { toggleNavbar } from "@slice/homeSlice";
 import { getClaims } from "@action/action.homeSlice";
-import Input from "@UI/Input/Input";
+import { Input } from "@UI/Input/Input";
 import iconBell from "@img/icon-notification.svg";
 import picAvatar from "@img/avatar.jpg";
 import iconExit from "@img/icon-exit.svg";
 
-const Header = ({ isSearch = true }) => {
+export const Header = ({ isSearch = true }) => {
   const dispatch = useDispatch();
   const nickName = useSelector((state) => state.user.fullName);
   const navbar = useSelector((state) => state.home.navbar);
@@ -68,5 +68,3 @@ const Header = ({ isSearch = true }) => {
     </header>
   );
 };
-
-export default Header;

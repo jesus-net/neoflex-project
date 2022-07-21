@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setClaim } from "@slice/claimSlice.js";
+import { setClaim } from "@slice/postSlice.js";
 
 export const getClaim = (id) => {
   let API = axios.create({

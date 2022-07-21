@@ -1,68 +1,24 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import Header from "@components/Header/Header";
-import Navbar from "@components/Navbar/Navbar";
-import Footer from "@components/Footer/Footer";
-import Auth from "@pages/Auth/Auth";
-import Home from "@pages/Home/Home";
-import Post from "@pages/Post/Post";
-import NotFound from "@pages/Error/NotFound";
-import ProtectedRoutes from "./ProtectedRoutes";
-import { useSelector } from "react-redux";
+import { Routes, Route } from "react-router-dom";
+import { Layout } from "@router/Layout";
+import { Auth } from "@pages/Auth/Auth";
+import { Home } from "@pages/Home/Home";
+import { PostCreate } from "@pages/Post/PostCreate";
+import { PostIncoming } from "@pages/Post/PostIncoming";
+import { NotFound } from "@pages/Error/NotFound";
+import { ProtectedRoutes } from "@router/ProtectedRoutes";
 
-const Views = () => {
-  const loggedIn = useSelector((state) => state.user.token);
+export const Views = () => {
   return (
     <Routes>
-      {
-        <Route
-          path="/"
-          element={
-            loggedIn ? (
-              <Navigate to="/home" />
-            ) : (
-              <>
-                <Auth />
-                <Footer />
-              </>
-            )
-          }
-        />
-      }
       <Route element={<ProtectedRoutes />}>
-        <Route
-          path="/home"
-          element={
-            <div className="container">
-              <Navbar />
-              <Header />
-              <Home />
-            </div>
-          }
-        />
-        <Route
-          path="/post"
-          element={
-            <div className="container">
-              <Navbar />
-              <Header />
-              <Post />
-            </div>
-          }
-        />
-        <Route
-          path="/post:id"
-          element={
-            <div className="container">
-              <Navbar />
-              <Header />
-              <Post />
-            </div>
-          }
-        />
+        <Route element={<Layout />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/post=:id" element={<PostIncoming />} />
+          <Route path="/post" element={<PostCreate />} />
+        </Route>
       </Route>
+      <Route path="/" element={<Auth />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
-
-export default Views;
