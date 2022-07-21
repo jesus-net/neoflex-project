@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import "@components/Form/Form.scss";
 import logoCompany from "@img/logo-company.svg";
-import Button from "@UI/Button/Button";
-import Input from "@UI/Input/Input";
-import useInput from "@components/Form/FormValidation.jsx";
+import { Button } from "@UI/Button/Button";
+import { Input } from "@UI/Input/Input";
+import { useInput } from "@components/Form/FormValidation.jsx";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { setLocalStorage } from "@slice/userSlice";
 
-import { useSelector } from "react-redux";
-
-const FormReg = ({ handleClick }) => {
-
+export const FormReg = ({ handleClick }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const API = useSelector((state) => state.user.API);
   const [signIn, setSignIn] = useState(false);
   const [messageForm, setMessageForm] = useState("");
@@ -30,19 +32,38 @@ const FormReg = ({ handleClick }) => {
     isEmpty: "password",
   });
 
-  const createUser = () => {
-    if (!fullName.isValid || !email.isValid || !password.isValid) {
+  const passwordRepeat = useInput("", {
+    isEmpty: "password",
+  });
+
+  const createUser = async (e) => {
+    e.preventDefault();
+    if (
+      !fullName.isValid ||
+      !email.isValid ||
+      !password.isValid ||
+      password.value !== passwordRepeat.value
+    ) {
       setSignIn(false);
       setMessageForm("Please enter correct data");
     } else {
-      API().post("auth/registration", {
-        fullName: fullName.value,
-        email: email.value,
-        password: password.value,
-      })
-        .then(() => {
+      await API()
+        .post("auth/registration", {
+          fullName: fullName.value,
+          email: email.value,
+          password: password.value,
+        })
+        .then((obj) => {
           setSignIn(true);
           setMessageForm("User successfully registered");
+          dispatch(
+            setLocalStorage({
+              token: obj.data.token,
+              fullName: obj.data.fullName,
+              role: obj.data.role.slug,
+            })
+          );
+          navigate("/home");
         })
         .catch((err) => {
           setSignIn(null);
@@ -50,7 +71,7 @@ const FormReg = ({ handleClick }) => {
         });
     }
   };
-  console.log(signIn);
+  console.log(passwordRepeat.value, password.value);
   return (
     <form className="form form-auth">
       <img src={logoCompany} alt="logo company"></img>
@@ -113,10 +134,22 @@ const FormReg = ({ handleClick }) => {
               </span>
             )}
         </div>
+        <div className="form__input">
+          <Input
+            type="password"
+            label="repeat password"
+            value={passwordRepeat.value}
+            onChange={passwordRepeat.onChange}
+            onBlur={passwordRepeat.onBlur}
+          />
+          {passwordRepeat.isDirty &&
+          (passwordRepeat.isEmpty ||
+            password.value !== passwordRepeat.value) ? (
+            <span className={"form__error"}>data does not match password</span>
+          ) : null}
+        </div>
         <div
-          className={
-            signIn === null ? "form__button--warning" : "form__button"
-          }
+          className={signIn === null ? "form__button--warning" : "form__button"}
         >
           <Button type="submit" value="Create Account" onClick={createUser} />
         </div>
@@ -135,5 +168,3 @@ const FormReg = ({ handleClick }) => {
     </form>
   );
 };
-
-export default FormReg;
