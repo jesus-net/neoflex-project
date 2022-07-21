@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import "@UI/Input/Input.scss";
 
@@ -8,27 +8,19 @@ import iconSearch from "@img/icon-search.svg";
 import iconDropdown from "@img/icon-dropdown.svg";
 import { nanoid } from "nanoid";
 
-
 const Input = ({
   type,
   label,
   maxLength,
   placeholder,
   value,
+  option,
   onChange,
   onBlur,
-  onSelect
+  disabled,
 }) => {
   let input;
-  const typeDropdown = [
-    "Hardware",
-    "Software",
-    "Troubleshooting",
-    "Networking",
-  ];
-  
-  const [isActiveDropdown, setActiveDropdown] = useState(false);
-
+  const [isVector, setVector] = useState(false);
   switch (type) {
     case "email":
       input = (
@@ -41,6 +33,7 @@ const Input = ({
             maxLength={maxLength}
             placeholder={placeholder || "Type your e-mail"}
             autoComplete="on"
+            disabled={disabled}
             onChange={(e) => onChange(e)}
             onBlur={(e) => onBlur(e)}
           />
@@ -59,6 +52,7 @@ const Input = ({
             maxLength={maxLength}
             placeholder={placeholder || "Type your password"}
             autoComplete="on"
+            disabled={disabled}
             onChange={(e) => onChange(e)}
             onBlur={(e) => onBlur(e)}
           />
@@ -73,9 +67,11 @@ const Input = ({
             className="input__field"
             type="text"
             name={label}
+            value={value}
             maxLength={maxLength}
             placeholder={placeholder || "Type claim title"}
             autoComplete="on"
+            disabled={disabled}
             onChange={(e) => onChange(e)}
             onBlur={(e) => onBlur(e)}
           />
@@ -102,39 +98,49 @@ const Input = ({
     case "dropdown":
       input = (
         <>
-          {value && <div className={"type " + value}></div>}
-          <input
+          {disabled ? 
+          <div className={"type " + value.slug}></div> : 
+          <div className={"type " + value}></div>}
+          <select
             className={
-              "input__field" + (value ? " input__field--active" : "")
+              value
+                ? "input__field dropdown dropdown--active"
+                : "input__field dropdown"
             }
-            placeholder={placeholder || "Select type"}
-            value={value}
-            onClick={() => setActiveDropdown(!isActiveDropdown)}
-            onBlur={(e) => onBlur(e)}
-            readOnly
-          />
+            value={disabled ? value.slug : value}
+            onChange={(e) => onChange(e)}
+            onClick={() => setVector(!isVector)}
+            disabled={disabled}
+            onBlur={(e) => {
+              setVector(false);
+              onBlur(e);
+            }}
+          >
+            {disabled ? (
+              <option value={value.slug} disabled>
+                {value.name}
+              </option>
+            ) : (
+              <>
+                <option value="" disabled>
+                  Select type
+                </option>
+                {option.map((item) => (
+                  <option value={item.slug} key={nanoid()}>
+                    {item.name}
+                  </option>
+                ))}
+              </>
+            )}
+          </select>
           <img
             className={
-              "dropdown__vector" +
-              (isActiveDropdown ? " dropdown__vector--active" : "")
+              isVector
+                ? "dropdown__vector dropdown__vector--active"
+                : "dropdown__vector"
             }
             src={iconDropdown}
           ></img>
-          <div
-            className={
-              "dropdown__menu" +
-              (isActiveDropdown ? " dropdown__menu--active" : "")
-            }
-          >
-            {typeDropdown.map((item) => (
-              <span key={nanoid()}
-                className={"dropdown___select " + item}
-                onClick={() => onSelect(item)}
-              >
-                {item}
-              </span>
-            ))}
-          </div>
         </>
       );
       break;
