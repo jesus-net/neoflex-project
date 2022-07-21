@@ -1,26 +1,32 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "@pages/Home/Home.scss";
 import Button from "@UI/Button/Button";
 import ClaimList from "@components/Claim-list/Claim-list";
 import PaginationList from "@components/Pagination/Pagination";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleNavbar } from "@slice/homeSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const role = useSelector((state) => state.user.role);
   const handleHome = () => dispatch(toggleNavbar(false));
+  const navigatePosts = () => navigate("/post");
+
   return (
     <main className="home" onClick={handleHome}>
       <div className="home__container">
         <h1 className="title">Your claims</h1>
-        <Link to="/claim">
+        {role === "admin" ? (
+          <></>
+        ) : (
           <div className="home__button">
-            <Button type="plus" value="Create claim" />
+            <Button type="plus" value="Create claim" onClick={navigatePosts} />
           </div>
-        </Link>
+        )}
         <ClaimList />
-        <PaginationList/>
+        <PaginationList />
       </div>
     </main>
   );

@@ -4,7 +4,7 @@ import Navbar from "@components/Navbar/Navbar";
 import Footer from "@components/Footer/Footer";
 import Auth from "@pages/Auth/Auth";
 import Home from "@pages/Home/Home";
-import NewClaim from "@pages/NewClaim/NewClaim";
+import Post from "@pages/Post/Post";
 import NotFound from "@pages/Error/NotFound";
 import ProtectedRoutes from "./ProtectedRoutes";
 import { useSelector } from "react-redux";
@@ -40,12 +40,22 @@ const Views = () => {
           }
         />
         <Route
-          path="/claim"
+          path="/post"
           element={
             <div className="container">
               <Navbar />
               <Header />
-              <NewClaim />
+              <Post />
+            </div>
+          }
+        />
+        <Route
+          path="/post:id"
+          element={
+            <div className="container">
+              <Navbar />
+              <Header />
+              <Post />
             </div>
           }
         />
